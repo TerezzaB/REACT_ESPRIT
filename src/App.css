@@ -1,0 +1,8 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+._nav { border-bottom: 1px solid #40ffff; z-index: 1000; }
+._modal { background-color: #eaeaf5; }
