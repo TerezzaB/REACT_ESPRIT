@@ -7,7 +7,7 @@ export default function RainfallChart({ weatherData }) {
     }
 
     const rainData = weatherData.data.pcpttl_aver.data;
-    // const rainProbData = weatherData.data.pcpprob_aver; 
+    const rainProbData = weatherData.data.pcpttlprob_point.data; 
     console.log( weatherData.data);
     const firstTimestamp = parseInt(weatherData.data.pcpttl_aver.first_timestamp, 10);
     const interval = parseInt(weatherData.data.pcpttl_aver.interval, 10);
@@ -28,9 +28,9 @@ export default function RainfallChart({ weatherData }) {
                 const dataIndex = params[0].dataIndex;
                 const dateTime = timeData[dataIndex];
                 const rain = params[0].value;
-                // const rainProb = rainProbData[dataIndex];
+                const rainProb = rainProbData[dataIndex];
 
-                return `Time: <b>${dateTime}</b><br>Rainfall: <b>${rain} mm</b><br>`;
+                return `Time: <b>${dateTime}</b><br>Rainfall: <b>${rain} mm</b><br>Rain probability: <b>${rainProb} %</b>`;
             },
         },
         xAxis: {
