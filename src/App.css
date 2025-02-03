@@ -4,5 +4,5 @@
   text-align: center;
 }
 
-._nav { border-bottom: 1px solid #40ffff; z-index: 1000; }
+._nav { border-bottom: 1px solid #40ffff; z-index: 1000; background-color: #FFF;}
 ._modal { background-color: #eaeaf5; }

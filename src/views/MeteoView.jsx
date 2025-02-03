@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ReactECharts from "echarts-for-react";
+import TemperatureChart from "../components/charts/TemperatureChart";
+import RainfallChart from "../components/charts/RainfallChart";
 
 export default function MeteoView() {
     const [weatherData, setWeatherData] = useState(null);
@@ -9,8 +10,6 @@ export default function MeteoView() {
 
     const fetchWeatherData = async () => {
         try {
-            // const timestamp = Math.floor(Date.now() / 1000);  // idk why not working - gonna find out later
-
             const requestBody = {
                 date: 1738562400,
                 point: {
@@ -25,7 +24,6 @@ export default function MeteoView() {
                 },
             });
 
-            console.log("API Response:", response.data);  // DELETE later
             setWeatherData(response.data);
             const formattedDate = new Date(response.data.fstart).toLocaleDateString("sk-SK", {
                 day: "2-digit",
@@ -33,7 +31,6 @@ export default function MeteoView() {
                 year: "numeric"
             });
             setToday(formattedDate);
-            console.log(todayDate);
         } catch (err) {
             console.error("Error fetching weather data", err);
             setError(err);
@@ -44,62 +41,18 @@ export default function MeteoView() {
         fetchWeatherData();
     }, []);
 
-    const getChartOptions = () => {
-        if (!weatherData || !weatherData.data || !weatherData.data.airtmp_point) {
-          return {};
-        }
-      
-        const tempData = weatherData.data.airtmp_point.data;
-        const firstTimestamp = parseInt(weatherData.data.airtmp_point.first_timestamp, 10);
-        const interval = parseInt(weatherData.data.airtmp_point.interval, 10);
-      
-        // X axis
-        const timeData = tempData.map((_, index) => {
-          const timestamp = firstTimestamp + index * interval; // timestamp countig here
-          return new Date(timestamp * 1000).toLocaleTimeString("sk-SK", {
-            hour: "2-digit",
-            minute: "2-digit",
-          });
-        });
-      
-        return {
-          title: { text: `Temperatures: ${todayDate}` },
-          tooltip: {
-            trigger: "axis",
-            formatter: (params) => {
-              const dataIndex = params[0].dataIndex;
-              const dateTime = timeData[dataIndex];
-              const temp = params[0].value;
-      
-              return `Time: <b>${dateTime}</b><br>Temperature: <b>${temp}°C</b>`;
-            },
-          },
-          xAxis: {
-            type: "category",
-            data: timeData,
-            axisLabel: { rotate: 45 },
-          },
-          yAxis: {
-            type: "value",
-            name: "Temperature (°C)",
-          },
-          series: [
-            {
-              name: "Temperature",
-              type: "line",
-              data: tempData,
-              smooth: true,
-              itemStyle: { color: "pink" },
-            },
-          ],
-        };
-      };
-      
-
     return (
         <div className="mt-5">
+            <h3 className="text-left">Weather forecast: {todayDate}</h3>
             {error && <p style={{ color: "red" }}>Loading Error</p>}
-            {weatherData ? <ReactECharts option={getChartOptions()} /> : <p>Loading data...</p>}
+            {weatherData ? (
+                <>
+                    <TemperatureChart weatherData={weatherData} todayDate={todayDate} />
+                    <RainfallChart weatherData={weatherData} todayDate={todayDate} />
+                </>
+            ) : (
+                <p>Loading data...</p>
+            )}
         </div>
     );
 };
