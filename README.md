@@ -1,6 +1,6 @@
 # React ToDo App
 
-A simple Meteo application built with React + Vite.
+A simple Meteo application built with React + Vite, using bootstrap.
 
 ## Features
 
