@@ -1,63 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import ReactECharts from 'echarts-for-react';
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 
-export default function MeteoView (){
-  const [weatherData, setWeatherData] = useState(null);
+export default function MeteoView() {
+    const [weatherData, setWeatherData] = useState(null);
+    const [error, setError] = useState(null);
 
-  useEffect(() => {
-    // Replace with desired coordinates
-    const lat = 52.2330224;
-    const lon = 20.9911552;
-    
     const fetchWeatherData = async () => {
-      try {
-        const response = await axios.post('https://devmgramapi.meteo.pl/meteorograms/um4_60', {
-          lat,
-          lon,
-        });
-        console.log(response);
-        setWeatherData(response.data);
-      } catch (error) {
-        console.error("Error fetching weather data", error);
-      }
+        try {
+            //const timestamp = Math.floor(Date.now() / 1000); //toto teraz nie
+
+            const requestBody = {
+                date: 1738562400,
+                point: {
+                    lat: "52.1674881",
+                    lon: "20.9427473"
+                }
+            };
+
+            const response = await axios.post("/api/meteorograms/um4_60", requestBody, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            setWeatherData(response.data);
+        } catch (err) {
+            console.error("Error fetching weather data", err);
+            setError(err);
+        }
     };
-    fetchWeatherData();
-  }, []);
 
-  // Example function to format data for ECharts (you need to adjust based on actual API response structure)
-  const processDataForChart = () => {
-    if (!weatherData) return {};
+    useEffect(() => {
+        fetchWeatherData();
+    }, []);
 
-    const times = weatherData.times; // Replace with actual time data from API
-    const temperatures = weatherData.temperatures; // Replace with actual temperature data
-
-    return {
-      xAxis: {
-        type: 'category',
-        data: times,
-      },
-      yAxis: {
-        type: 'value',
-      },
-      series: [
-        {
-          data: temperatures,
-          type: 'line',
-        },
-      ],
-    };
-  };
-
-  return (
-    <div>
-      <h2>Meteo Information</h2>
-      {weatherData ? (
-        <ReactECharts option={processDataForChart()} />
-      ) : (
-        <p>Loading weather data...</p>
-      )}
-    </div>
-  );
+    return (
+        <div>
+            <h2>Meteorologické údaje</h2>
+            {error && <p style={{ color: "red" }}>Chyba pri načítaní údajov.</p>}
+            {weatherData ? (
+                <pre>{JSON.stringify(weatherData, null, 2)}</pre>
+            ) : (
+                <p>Načítavam dáta...</p>
+            )}
+        </div>
+    );
 };
+
 
