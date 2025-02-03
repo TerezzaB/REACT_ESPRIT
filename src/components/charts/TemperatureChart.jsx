@@ -19,15 +19,26 @@ export default function TemperatureChart({ weatherData }) {
         });
     });
 
+    // Date for tooltip (DD.MM.YYYY)
+    const dateData = tempData.map((_, index) => {
+        const timestamp = firstTimestamp + index * interval;
+        return new Date(timestamp * 1000).toLocaleDateString("sk-SK", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+        });
+    });
+
     const chartOptions = {
         tooltip: {
             trigger: "axis",
             formatter: (params) => {
                 const dataIndex = params[0].dataIndex;
                 const dateTime = timeData[dataIndex];
+                const date = dateData[dataIndex]; // Dátum z tooltipu
                 const temp = params[0].value;
 
-                return `Time: <b>${dateTime}</b><br>Temperature: <b>${temp}°C</b>`;
+                return `Date: <b>${date}</b><br>Time: <b>${dateTime}</b><br>Temperature: <b>${temp}°C</b>`;
             },
         },
         xAxis: {
@@ -45,7 +56,7 @@ export default function TemperatureChart({ weatherData }) {
                 type: "line",
                 data: tempData,
                 smooth: true,
-                itemStyle: { color: "pink" },
+                itemStyle: { color: "magenta" },
             },
         ],
     };
