@@ -10,8 +10,17 @@ export default function MeteoView() {
 
     const fetchWeatherData = async () => {
         try {
+            // Create a new Date object representing the current date and time.
+            const now = new Date();
+
+            // Create a new Date object set to UTC midnight of the current date.
+            const utcMidnight = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 0, 0));
+
+            // Calculate the timestamp in seconds since Unix epoch for UTC midnight.
+            const midnightTimestamp = Math.floor(utcMidnight.getTime() / 1000);
+
             const requestBody = {
-                date: 1738562400,
+                date: midnightTimestamp,
                 point: {
                     lat: "60.1674881",
                     lon: "24.9427473",
@@ -24,18 +33,24 @@ export default function MeteoView() {
                 },
             });
 
+            console.log("DATA: ", response.data); // DELETE LATER
             setWeatherData(response.data);
-            const formattedDate = new Date(response.data.fstart).toLocaleDateString("sk-SK", {
+
+            const formattedDate = new Date(response.data.fstart * 1000).toLocaleDateString("sk-SK", {
                 day: "2-digit",
                 month: "2-digit",
                 year: "numeric"
             });
+
             setToday(formattedDate);
         } catch (err) {
             console.error("Error fetching weather data", err);
             setError(err);
         }
     };
+
+
+
 
     useEffect(() => {
         fetchWeatherData();
