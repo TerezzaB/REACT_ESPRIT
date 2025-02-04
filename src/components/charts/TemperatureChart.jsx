@@ -111,17 +111,17 @@ export default function TemperatureChart({ weatherData }) {
                             type: 'max', 
                             name: 'Max Temperature', 
                             coord: maxCoord, 
-                            itemStyle: { color: 'red' } 
+                            itemStyle: { color: 'cyan', borderColor: 'magenta' } 
                         },
                         minCoord && {
                             type: 'min', 
                             name: 'Min Temperature', 
                             coord: minCoord, 
-                            itemStyle: { color: 'blue' } 
+                            itemStyle: { color: 'cyan', borderColor: 'magenta' } 
                         }
                     ].filter(Boolean), // Remove null/undefined values
                     symbol: 'circle',  
-                    symbolSize: 10,
+                    symbolSize: 15,
                 },
             },
         ],
