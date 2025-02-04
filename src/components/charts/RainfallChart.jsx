@@ -14,13 +14,20 @@ export default function RainfallChart({ weatherData }) {
     const interval = parseInt(weatherData.data.pcpttl_aver.interval, 10);
 
     // X axis
-    const timeData = rainData.map((_, index) => {
-        const timestamp = firstTimestamp + index * interval;
-        return new Date(timestamp * 1000).toLocaleTimeString("sk-SK", {
-            hour: "2-digit",
-            minute: "2-digit",
-        });
+   // X axis - najprv čas, potom dátum
+const timeData = rainData.map((_, index) => {
+    const timestamp = firstTimestamp + index * interval;
+    const date = new Date(timestamp * 1000);
+
+    return date.toLocaleTimeString("sk-SK", {
+        hour: "2-digit",
+        minute: "2-digit",
+    }) + " " + date.toLocaleDateString("sk-SK", {
+        day: "2-digit",
+        month: "2-digit",
     });
+});
+
 
     // Date for tooltip (DD.MM.YYYY)
     const dateData = rainData.map((_, index) => {
