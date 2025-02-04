@@ -33,16 +33,22 @@ export default function MeteoView() {
                 },
             });
 
-            console.log("DATA: ", response.data); // DELETE LATER
+            console.log("DATA: ", response.data.fstart); // DELETE LATER
             setWeatherData(response.data);
 
-            const formattedDate = new Date(response.data.fstart * 1000).toLocaleDateString("sk-SK", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric"
-            });
-
-            setToday(formattedDate);
+            const formattedDate = new Date(response.data.fstart);
+            if (isNaN(formattedDate.getTime())) {
+                console.error("Invalid date:", response.data.fstart);
+            } else {
+                const formattedDateString = formattedDate.toLocaleDateString("sk-SK", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric"
+                });
+                console.log("FORMATTED DATE: ", formattedDateString);
+                setToday(formattedDateString);
+            }
+            
         } catch (err) {
             console.error("Error fetching weather data", err);
             setError(err);
