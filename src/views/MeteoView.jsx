@@ -33,7 +33,6 @@ export default function MeteoView() {
                 },
             });
 
-            console.log("DATA: ", response.data.fstart); // DELETE LATER
             setWeatherData(response.data);
 
             const formattedDate = new Date(response.data.fstart);
@@ -45,7 +44,6 @@ export default function MeteoView() {
                     month: "2-digit",
                     year: "numeric"
                 });
-                console.log("FORMATTED DATE: ", formattedDateString);
                 setToday(formattedDateString);
             }
             
