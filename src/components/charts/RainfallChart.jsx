@@ -22,9 +22,6 @@ const timeData = rainData.map((_, index) => {
     return date.toLocaleTimeString("sk-SK", {
         hour: "2-digit",
         minute: "2-digit",
-    }) + " " + date.toLocaleDateString("sk-SK", {
-        day: "2-digit",
-        month: "2-digit",
     });
 });
 
