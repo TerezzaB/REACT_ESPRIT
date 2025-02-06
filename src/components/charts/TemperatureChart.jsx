@@ -16,9 +16,6 @@ export default function WeatherChart({ weatherData }) {
     // Rainfall data
     const rainData = weatherData.data.pcpttl_aver?.data || [];
     const maxRainData = weatherData.data.pcpttl_max?.data || [];
-    const rainProbData = weatherData.data.pcpttlprob_point?.data || [];
-    const rainFirstTimestamp = parseInt(weatherData.data.pcpttl_aver?.first_timestamp || 0, 10);
-    const rainInterval = parseInt(weatherData.data.pcpttl_aver?.interval || 1, 10);
 
     // Generate X-axis time labels
     const maxLength = Math.max(tempData.length, rainData.length);
@@ -30,7 +27,6 @@ export default function WeatherChart({ weatherData }) {
         });
     });
 
-    // Date for tooltip (DD.MM.YYYY)
     const dateData = Array.from({ length: maxLength }, (_, index) => {
         const timestamp = tempFirstTimestamp + index * tempInterval;
         return new Date(timestamp * 1000).toLocaleDateString("sk-SK", {
@@ -40,54 +36,63 @@ export default function WeatherChart({ weatherData }) {
         });
     });
 
-    const tempChartOptions = {
-        title: { text: "Temperature Chart" },
+    const chartOptions = {
         tooltip: {
             trigger: "axis",
             formatter: (params) => {
                 const dataIndex = params[0].dataIndex;
-                return `Date: <b>${dateData[dataIndex]}</b><br>Time: <b>${timeData[dataIndex]}</b><br>Temperature: <b>${params[0].value}°C</b><br>Min Temperature: <b>${tempMin}°C</b><br>Max Temperature: <b>${tempMax}°C</b>`;
+                return `Date: <b>${dateData[dataIndex]}</b><br>Time: <b>${timeData[dataIndex]}</b><br>
+                ${params.map(p => `${p.seriesName}: <b>${p.value}${p.seriesName === "Temperature" ? "°C" : " mm"}</b>`).join("<br>")}`;
             },
         },
-        xAxis: { type: "category", data: timeData, axisLabel: { rotate: 45 } },
-        yAxis: { type: "value", name: "Temperature (°C)" },
+        grid: [
+            { left: "10%", right: "10%", top: "5%", height: "35%" }, // Grid for temperature
+            { left: "10%", right: "10%", top: "50%", height: "35%" }, // Grid for rainfall
+        ],
+        xAxis: [
+            {
+                type: "category",
+                data: timeData,
+                axisLabel: { rotate: 45 },
+                position: "top",
+                gridIndex: 0, // X-axis for temperature chart
+            },
+            {
+                type: "category",
+                data: timeData,
+                axisLabel: { show: false }, // Skryť dolnú os, aby nebola duplikovaná
+                gridIndex: 1, // X-axis for rainfall chart (táto je skrytá)
+            },
+        ],
+        yAxis: [
+            { type: "value", name: "Temperature (°C)", gridIndex: 0 },
+            { type: "value", name: "Rainfall (mm)", gridIndex: 1 },
+        ],
         series: [
             {
                 name: "Temperature",
                 type: "line",
                 data: tempData,
                 smooth: true,
+                xAxisIndex: 0,
+                yAxisIndex: 0,
                 itemStyle: { color: "magenta" },
                 markPoint: {
-                    label: { show: false },
-                    tooltip: { show: false },
                     data: [
-                        { type: "max", name: "Max Temperature", itemStyle: { color: "cyan", borderColor: "magenta" } },
-                        { type: "min", name: "Min Temperature", itemStyle: { color: "cyan", borderColor: "magenta" } },
+                        { type: "max", name: "Max Temperature" },
+                        { type: "min", name: "Min Temperature" },
                     ],
                     symbol: "circle",
                     symbolSize: 15,
+                    label: { show: false },
                 },
             },
-        ],
-    };
-
-    const rainChartOptions = {
-        title: { text: "Rainfall Chart" },
-        tooltip: {
-            trigger: "axis",
-            formatter: (params) => {
-                const dataIndex = params[0].dataIndex;
-                return `Date: <b>${dateData[dataIndex]}</b><br>Time: <b>${timeData[dataIndex]}</b><br>Rainfall: <b>${rainData[dataIndex]} mm</b><br>Max Rainfall: <b>${maxRainData[dataIndex]} mm</b><br>Rain probability: <b>${rainProbData[dataIndex]} %</b>`;
-            },
-        },
-        xAxis: { type: "category", data: timeData, axisLabel: { rotate: 45 } },
-        yAxis: { type: "value", name: "Rainfall (mm)" },
-        series: [
             {
                 name: "Rainfall",
                 type: "bar",
                 data: rainData,
+                xAxisIndex: 1, // Musí používať správny xAxisIndex
+                yAxisIndex: 1,
                 itemStyle: { color: "cyan" },
                 barWidth: 10,
             },
@@ -95,20 +100,13 @@ export default function WeatherChart({ weatherData }) {
                 name: "Max Rainfall",
                 type: "bar",
                 data: maxRainData,
+                xAxisIndex: 1,
+                yAxisIndex: 1,
                 itemStyle: { color: "magenta" },
                 barWidth: 3,
-                symbol: "none",
-                label: {
-                    show: false,
-                }
             },
         ],
     };
 
-    return (
-        <div>
-            <ReactECharts option={tempChartOptions} />
-            <ReactECharts option={rainChartOptions} />
-        </div>
-    );
+    return <ReactECharts option={chartOptions} style={{ height: "700px", marginTop: "50px" }} />;
 }
