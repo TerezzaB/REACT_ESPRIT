@@ -16,6 +16,7 @@ export default function WeatherChart({ weatherData }) {
     // Rainfall data
     const rainData = weatherData.data.pcpttl_aver?.data || [];
     const maxRainData = weatherData.data.pcpttl_max?.data || [];
+    const rainProbability = weatherData.data.pcpttlprob_point.data || [];
 
     // Generate X-axis time labels
     const maxLength = Math.max(tempData.length, rainData.length);
@@ -41,8 +42,17 @@ export default function WeatherChart({ weatherData }) {
             trigger: "axis",
             formatter: (params) => {
                 const dataIndex = params[0].dataIndex;
-                return `Date: <b>${dateData[dataIndex]}</b><br>Time: <b>${timeData[dataIndex]}</b><br>
-                ${params.map(p => `${p.seriesName}: <b>${p.value}${p.seriesName === "Temperature" ? "°C" : " mm"}</b>`).join("<br>")}`;
+                let tooltipText = `Date: <b>${dateData[dataIndex]}</b><br>Time: <b>${timeData[dataIndex]}</b><br>`;
+                tooltipText += params.map(p => {
+                    let seriesText = `${p.seriesName}: <b>${p.value}${p.seriesName === "Temperature" ? "°C" : " mm"}</b>`;
+
+                    if (p.seriesName === "Rainfall") {
+                        const rainfallProb = rainProbability[dataIndex];
+                        seriesText += `<br>Rainfall Probability: <b>${rainfallProb}%</b>`;
+                    }
+                    return seriesText;
+                }).join("<br>");
+                return tooltipText;
             },
         },
         grid: [
