@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TemperatureChart from "../components/charts/TemperatureChart";
-import RainfallChart from "../components/charts/RainfallChart";
 
 export default function MeteoView() {
     const [weatherData, setWeatherData] = useState(null);
@@ -22,8 +21,8 @@ export default function MeteoView() {
             const requestBody = {
                 date: midnightTimestamp,
                 point: {
-                    lat: "60.1674881",
-                    lon: "24.9427473",
+                    lat: "50.2774881",
+                    lon: "19.9427473",
                 },
             };
 
@@ -67,7 +66,6 @@ export default function MeteoView() {
             {weatherData ? (
                 <>
                     <TemperatureChart weatherData={weatherData} todayDate={todayDate} />
-                    <RainfallChart weatherData={weatherData} todayDate={todayDate} />
                 </>
             ) : (
                 <p>Loading data...</p>
