@@ -32,54 +32,21 @@ export default function WeatherChart({ weatherData }) {
         });
     });
 
-    // Logika pre správne vyfarbenie dní
-    const markAreas = [];
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
-
-    const dayAfterTomorrow = new Date(today);
-    dayAfterTomorrow.setDate(today.getDate() + 2);
-
-    let currentDay = null;
-    let startIndex = 0;
-
+    const dailyRainSum = {};
     dateData.forEach((date, index) => {
-        const parsedDate = new Date(date.split(".").reverse().join("-")); // Konverzia formátu dd.mm.yyyy na Date objekt
-        parsedDate.setHours(0, 0, 0, 0);
-
-        if (currentDay === null) {
-            currentDay = parsedDate;
-            startIndex = index;
+        if (!dailyRainSum[date]) {
+            dailyRainSum[date] = 0;
         }
-
-        if (parsedDate.getTime() !== currentDay.getTime()) {
-            let backgroundColor = "rgba(255, 255, 255, 0.5)"; // Defaultne biela
-            if (currentDay.getTime() === tomorrow.getTime()) {
-                backgroundColor = "rgba(242, 240, 240, 0.5)"; // Sivá pre zajtrajšok
-            }
-
-            markAreas.push([
-                { xAxis: startIndex, itemStyle: { color: backgroundColor } },
-                { xAxis: index }
-            ]);
-
-            currentDay = parsedDate;
-            startIndex = index;
-        }
+        dailyRainSum[date] += rainData[index] || 0;
     });
 
-    let finalBackgroundColor = "rgba(255, 255, 255, 0.5)";
-    if (currentDay.getTime() === tomorrow.getTime()) {
-        finalBackgroundColor = "rgba(200, 200, 200, 0.5)";
-    }
+    const dailyRainDates = Object.keys(dailyRainSum);
+    const dailyRainValues = Object.values(dailyRainSum).map(value => value.toFixed(2));
 
-    markAreas.push([
-        { xAxis: startIndex, itemStyle: { color: finalBackgroundColor } },
-        { xAxis: dateData.length - 1 }
-    ]);
+    const alignedDailyRainData = dailyRainDates.map(date => {
+        const index = dateData.findIndex(d => d === date) + Math.floor(12 * 3600 / tempInterval);
+        return [index, dailyRainSum[date].toFixed(2)];
+    });
 
     const chartOptions = {
         tooltip: {
@@ -100,27 +67,44 @@ export default function WeatherChart({ weatherData }) {
             },
         },
         axisPointer: {
-            link: [{ xAxisIndex: [0, 1] }],
+            link: [{ xAxisIndex: [0, 1, 2] }],
             label: { backgroundColor: "#777" },
         },
         grid: [
-            { left: "10%", right: "10%", top: "5%", height: "35%" },
-            { left: "10%", right: "10%", top: "50%", height: "35%" },
+            { left: "10%", right: "10%", top: "5%", height: "30%" },
+            { left: "10%", right: "10%", top: "45%", height: "30%" },
+            { left: "10%", right: "10%", top: "85%", height: "5%" }
         ],
         xAxis: [
             { type: "category", data: timeData, position: "top", gridIndex: 0 },
             { type: "category", data: timeData, gridIndex: 1 },
+            { type: "category", data: timeData, gridIndex: 2 }
         ],
         yAxis: [
             { type: "value", name: "Temperature (°C)", gridIndex: 0 },
             { type: "value", name: "Rainfall (mm)", gridIndex: 1 },
+            { type: "value", show: false, gridIndex: 2 }
         ],
         series: [
-            { name: "Temperature", type: "line", data: tempData, xAxisIndex: 0, yAxisIndex: 0, itemStyle: { color: "magenta" }, markArea: { silent: true, data: markAreas }, markPoint: { data: [{ type: "max" }, { type: "min" }], symbol: "circle", symbolSize: 10, label: { show: false } } },
-            { name: "Rainfall", type: "bar", data: rainData, xAxisIndex: 1, yAxisIndex: 1, itemStyle: { color: "cyan" }, barWidth: 10, markArea: { silent: true, data: markAreas } },
-            { name: "Max Rainfall", type: "bar", data: maxRainData, xAxisIndex: 1, yAxisIndex: 1, itemStyle: { color: "magenta" }, barWidth: 3, markArea: { silent: true, data: markAreas } },
+            { name: "Temperature", type: "line", data: tempData, xAxisIndex: 0, yAxisIndex: 0, itemStyle: { color: "magenta" } },
+            { name: "Rainfall", type: "bar", data: rainData, xAxisIndex: 1, yAxisIndex: 1, itemStyle: { color: "cyan" }, barWidth: 10 },
+            { name: "Max Rainfall", type: "bar", data: maxRainData, xAxisIndex: 1, yAxisIndex: 1, itemStyle: { color: "magenta" }, barWidth: 3 },
+            { name: "Daily Rain Sum", type: "custom", renderItem: (params, api) => {
+                const value = api.value(1);
+                return {
+                    type: 'text',
+                    style: {
+                        text: value,
+                        fill: 'black',
+                        fontSize: 14,
+                        textAlign: 'center',
+                        textVerticalAlign: 'middle'
+                    },
+                    position: [api.coord([api.value(0), 0])[0], api.coord([api.value(0), 0])[1] - 15],
+                };
+            }, data: alignedDailyRainData, xAxisIndex: 2, yAxisIndex: 2 }
         ],
     };
 
-    return <ReactECharts option={chartOptions} style={{ height: "700px", marginTop: "50px" }} />;
+    return <ReactECharts option={chartOptions} style={{ height: "850px", marginTop: "50px" }} />;
 }
