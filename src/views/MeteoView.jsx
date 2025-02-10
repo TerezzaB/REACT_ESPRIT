@@ -21,8 +21,8 @@ export default function MeteoView() {
             const requestBody = {
                 date: midnightTimestamp,
                 point: {
-                    lat: "54.3774881",
-                    lon: "18.6327473",
+                    lat: "50.8474881",
+                    lon: "8.827473",
                 },
             };
 
