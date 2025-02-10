@@ -58,7 +58,7 @@ export default function WeatherChart({ weatherData }) {
         if (parsedDate.getTime() !== currentDay.getTime()) {
             let backgroundColor = "rgba(255, 255, 255, 0.5)"; // Defaultne biela
             if (currentDay.getTime() === tomorrow.getTime()) {
-                backgroundColor = "rgba(240, 240, 240, 0.5)"; // Sivá pre zajtrajšok
+                backgroundColor = "rgba(242, 240, 240, 0.5)"; // Sivá pre zajtrajšok
             }
 
             markAreas.push([
@@ -73,7 +73,7 @@ export default function WeatherChart({ weatherData }) {
 
     let finalBackgroundColor = "rgba(255, 255, 255, 0.5)";
     if (currentDay.getTime() === tomorrow.getTime()) {
-        finalBackgroundColor = "rgba(255, 253, 253, 0.5)";
+        finalBackgroundColor = "rgba(200, 200, 200, 0.5)";
     }
 
     markAreas.push([
@@ -84,7 +84,20 @@ export default function WeatherChart({ weatherData }) {
     const chartOptions = {
         tooltip: {
             trigger: "axis",
-            axisPointer: { type: "cross" }
+            axisPointer: { type: "cross" },
+            formatter: (params) => {
+                const dataIndex = params[0].dataIndex;
+                let tooltipText = `Date: <b>${dateData[dataIndex]}</b><br>Time: <b>${timeData[dataIndex]}</b><br>`;
+                tooltipText += params.map(p => {
+                    let seriesText = `${p.seriesName}: <b>${p.value}${p.seriesName === "Temperature" ? "°C" : " mm"}</b>`;
+                    if (p.seriesName === "Rainfall") {
+                        const rainfallProb = rainProbability[dataIndex];
+                        seriesText += `<br>Rainfall Probability: <b>${rainfallProb}%</b>`;
+                    }
+                    return seriesText;
+                }).join("<br>");
+                return tooltipText;
+            },
         },
         axisPointer: {
             link: [{ xAxisIndex: [0, 1] }],
@@ -103,7 +116,7 @@ export default function WeatherChart({ weatherData }) {
             { type: "value", name: "Rainfall (mm)", gridIndex: 1 },
         ],
         series: [
-            { name: "Temperature", type: "line", data: tempData, xAxisIndex: 0, yAxisIndex: 0, itemStyle: { color: "magenta" }, markArea: { silent: true, data: markAreas }, markPoint: { data: [{ type: "max" }, { type: "min" }], symbol: "circle", symbolSize: 15, label: { show: false } } },
+            { name: "Temperature", type: "line", data: tempData, xAxisIndex: 0, yAxisIndex: 0, itemStyle: { color: "magenta" }, markArea: { silent: true, data: markAreas }, markPoint: { data: [{ type: "max" }, { type: "min" }], symbol: "circle", symbolSize: 10, label: { show: false } } },
             { name: "Rainfall", type: "bar", data: rainData, xAxisIndex: 1, yAxisIndex: 1, itemStyle: { color: "cyan" }, barWidth: 10, markArea: { silent: true, data: markAreas } },
             { name: "Max Rainfall", type: "bar", data: maxRainData, xAxisIndex: 1, yAxisIndex: 1, itemStyle: { color: "magenta" }, barWidth: 3, markArea: { silent: true, data: markAreas } },
         ],
