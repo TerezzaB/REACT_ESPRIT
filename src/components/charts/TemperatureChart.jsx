@@ -32,14 +32,8 @@ export default function WeatherChart({ weatherData }) {
         });
     });
 
-    // Vypočítanie max a min teploty
-    const maxTempData = tempData.map((value, index) => ({ value, index }))
-        .filter(item => item.value === Math.max(...tempData))
-        .map(item => [item.index, item.value]);
-
-    const minTempData = tempData.map((value, index) => ({ value, index }))
-        .filter(item => item.value === Math.min(...tempData))
-        .map(item => [item.index, item.value]);
+    const maxTempData = tempData.map((value, index) => [index, value === Math.max(...tempData) ? value : null]);
+    const minTempData = tempData.map((value, index) => [index, value === Math.min(...tempData) ? value : null]);
 
     const dailyRainSum = {};
     dateData.forEach((date, index) => {
@@ -62,18 +56,26 @@ export default function WeatherChart({ weatherData }) {
             formatter: (params) => {
                 const dataIndex = params[0].dataIndex;
                 let tooltipText = `Date: <b>${dateData[dataIndex]}</b><br>Time: <b>${timeData[dataIndex]}</b><br>`;
-                tooltipText += params.map(p => {
-                    let value = p.seriesName === "Temperature" ? p.value.toFixed(1) : p.value;
-                    let seriesText = `${p.seriesName}: <b>${value}${p.seriesName === "Temperature" ? "°C" : " mm"}</b>`;
-                    if (p.seriesName === "Rainfall") {
-                        const rainfallProb = rainProbability[dataIndex];
-                        seriesText += `<br>Rainfall Probability: <b>${rainfallProb}%</b>`;
+                
+                params.forEach(p => {
+                    if (p.seriesName === "Temperature") {
+                        tooltipText += `Temperature: <b>${p.value.toFixed(1)}°C</b><br>`;
+                    } else if (p.seriesName === "Rainfall") {
+                        tooltipText += `<span style="display:inline-block;width:10px;height:10px;background-color:cyan;margin-right:5px;border-radius:50%;"></span> Rainfall: <b>${p.value} mm</b><br>`;
+                    } else if (p.seriesName === "Max Rainfall") {
+                        tooltipText += `<span style="display:inline-block;width:10px;height:10px;background-color:magenta;margin-right:5px;border-radius:50%;"></span> Max Rainfall: <b>${p.value} mm</b><br>`;
                     }
-                    return seriesText;
-                }).join("<br>");
+                });
+        
+                // Rain Probability bez odrážky
+                if (rainProbability[dataIndex] !== undefined) {
+                    tooltipText += `Rain Probability: <b>${rainProbability[dataIndex]}%</b>`;
+                }
+        
                 return tooltipText;
             },
         },
+        
         axisPointer: {
             link: [{ xAxisIndex: [0, 1, 2] }],
             label: { backgroundColor: "#777" },
@@ -84,7 +86,7 @@ export default function WeatherChart({ weatherData }) {
             { left: "10%", right: "10%", top: "77%", height: "5%" }
         ],
         xAxis: [
-            { type: "category", data: timeData, position: "top", gridIndex: 0 },
+            { type: "category", data: timeData, gridIndex: 0 }, // Presunuté dole
             { type: "category", data: timeData, gridIndex: 1 },
             { 
                 type: "category", 
@@ -110,7 +112,7 @@ export default function WeatherChart({ weatherData }) {
                 data: maxTempData, 
                 xAxisIndex: 0, 
                 yAxisIndex: 0, 
-                symbolSize: 15, 
+                symbolSize: 12, 
                 itemStyle: { color: "red" } 
             },
             { 
@@ -119,7 +121,7 @@ export default function WeatherChart({ weatherData }) {
                 data: minTempData, 
                 xAxisIndex: 0, 
                 yAxisIndex: 0, 
-                symbolSize: 15, 
+                symbolSize: 12, 
                 itemStyle: { color: "blue" } 
             },
             { name: "Daily Rain Sum", type: "custom", renderItem: (params, api) => {
