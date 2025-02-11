@@ -49,7 +49,7 @@ export default function WeatherChart({ weatherData }) {
         return [index, dailyRainSum[date].toFixed(2)];
     });
 
-    
+
     // Colors of particular days
     const now = new Date();
 
@@ -59,9 +59,9 @@ export default function WeatherChart({ weatherData }) {
 
         const diffDays = Math.floor((now - dateObj) / (1000 * 60 * 60 * 24));
 
-        if (diffDays === 0) return "#eee";
+        if (diffDays === 0) return "#f2f2f2";
         if (diffDays === -1) return "#fff";
-        if (diffDays === -2) return "#eee";
+        if (diffDays === -2) return "#f2f2f2";
         return "#fff";
     });
 
