@@ -56,14 +56,14 @@ export default function WeatherChart({ weatherData }) {
     const dateColorMap = Array.from({ length: maxLength }, (_, index) => {
         const timestamp = tempFirstTimestamp + index * tempInterval;
         const dateObj = new Date(timestamp * 1000);
-
-        const diffDays = Math.floor((now - dateObj) / (1000 * 60 * 60 * 24));
-
-        if (diffDays === 0) return "#f2f2f2";
-        if (diffDays === -1) return "#fff";
-        if (diffDays === -2) return "#f2f2f2";
-        return "#fff";
-    });
+      
+        const dayMidnight = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
+       
+        const dayIndex = Math.floor(dayMidnight.getTime() / (1000 * 60 * 60 * 24));
+      
+        return dayIndex % 2 === 0 ? "#f2f2f2" : "#fff";
+      });
+      
 
 
     const chartOptions = {
@@ -179,7 +179,7 @@ export default function WeatherChart({ weatherData }) {
                 data: maxTempData,
                 xAxisIndex: 0,
                 yAxisIndex: 0,
-                symbolSize: 12,
+                symbolSize: 16,
                 itemStyle: { color: "red" }
             },
             {
@@ -188,7 +188,7 @@ export default function WeatherChart({ weatherData }) {
                 data: minTempData,
                 xAxisIndex: 0,
                 yAxisIndex: 0,
-                symbolSize: 12,
+                symbolSize: 16,
                 itemStyle: { color: "blue" }
             },
             {
