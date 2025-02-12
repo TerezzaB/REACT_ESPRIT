@@ -61,7 +61,7 @@ export default function WeatherChart({ weatherData }) {
        
         const dayIndex = Math.floor(dayMidnight.getTime() / (1000 * 60 * 60 * 24));
       
-        return dayIndex % 2 === 0 ? "#f2f2f2" : "#fff";
+        return dayIndex % 2 === 0 ? "#f1f1f1" : "#fff";
       });
       
 
