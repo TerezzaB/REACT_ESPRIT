@@ -32,6 +32,8 @@ export default function WeatherChart({ weatherData }) {
         });
     });
 
+    const uniqueDateData = [...new Set(dateData)];
+
     const dailyRainSum = {};
     dateData.forEach((date, index) => {
         if (!dailyRainSum[date]) {
@@ -79,23 +81,23 @@ export default function WeatherChart({ weatherData }) {
             },
         },
         axisPointer: {
-            link: [{ xAxisIndex: [0, 1, 2, 3] }],
+            link: [{ xAxisIndex: [0, 1, 2, 3, 4] }],
             label: { backgroundColor: "#777" },
         },
         grid: [
             { left: "10%", right: "10%", top: "5%", height: "3%" },
-            { left: "10%", right: "10%", top: "12%", height: "30%" },
-            { left: "10%", right: "10%", top: "50%", height: "30%" },
-            { left: "10%", right: "10%", top: "80%", height: "5%" }
+            { left: "10%", right: "10%", top: "8.5%", height: "3%" },
+            { left: "10%", right: "10%", top: "16%", height: "30%" },
+            { left: "10%", right: "10%", top: "52%", height: "30%" },
+            { left: "10%", right: "10%", top: "82%", height: "5%" }
         ],
         xAxis: [
             {
                 type: "category",
-                data: timeData,
+                data: uniqueDateData,
                 gridIndex: 0,
-                position: "top",
                 axisLabel: { inside: true, margin: 8, fontWeight: "bold" },
-                axisTick: { inside: true, alignWithLabel: true },
+                axisTick: { show: false },
                 axisLine: { lineStyle: { color: "#000", width: 3 } },
                 splitArea: { show: true, interval: 0, areaStyle: { color: dateColorMap } },
             },
@@ -103,10 +105,11 @@ export default function WeatherChart({ weatherData }) {
                 type: "category",
                 data: timeData,
                 gridIndex: 1,
+                position: "top",
+                axisLabel: { inside: true, margin: 8, fontWeight: "bold" },
+                axisTick: { inside: true, alignWithLabel: true },
+                axisLine: { lineStyle: { color: "#000", width: 3 } },
                 splitArea: { show: true, interval: 0, areaStyle: { color: dateColorMap } },
-                axisLabel: { show: false },
-                axisTick: { show: false },
-                axisLine: { lineStyle: { color: "#000" } },
             },
             {
                 type: "category",
@@ -121,6 +124,15 @@ export default function WeatherChart({ weatherData }) {
                 type: "category",
                 data: timeData,
                 gridIndex: 3,
+                splitArea: { show: true, interval: 0, areaStyle: { color: dateColorMap } },
+                axisLabel: { show: false },
+                axisTick: { show: false },
+                axisLine: { lineStyle: { color: "#000" } },
+            },
+            {
+                type: "category",
+                data: timeData,
+                gridIndex: 4,
                 axisLabel: { fontWeight: "bold" },
                 axisTick: { inside: true, alignWithLabel: true },
                 axisLine: { lineStyle: { color: "#000", width: 3 } },
@@ -128,38 +140,49 @@ export default function WeatherChart({ weatherData }) {
             }
         ],
         yAxis: [
-            { type: "value", show: false, gridIndex: 0 },
+            { type: "value", show: false, gridIndex: 0 }, // New yAxis for days
+            { type: "value", show: false, gridIndex: 1 },
             { 
                 type: "value", 
                 name: "Temperature (°C)", 
-                gridIndex: 1,
-            },
-            { 
-                type: "value", 
-                name: "Rainfall (mm)", 
                 gridIndex: 2,
             },
             { 
                 type: "value", 
+                name: "Rainfall (mm)", 
+                gridIndex: 3,
+            },
+            { 
+                type: "value", 
                 show: false, 
-                gridIndex: 3
+                gridIndex: 4
             },
         ],
         series: [
             {
+                name: "Days",
+                type: "line",
+                data: uniqueDateData.map((date, index) => [index, 0]),
+                xAxisIndex: 0,
+                yAxisIndex: 0,
+                itemStyle: { color: "transparent" },
+                lineStyle: { color: "transparent" },
+                showSymbol: false
+            },
+            {
                 name: "Temperature",
                 type: "line",
                 data: tempData,
-                xAxisIndex: 1,
-                yAxisIndex: 1,
+                xAxisIndex: 2,
+                yAxisIndex: 2,
                 itemStyle: { color: "magenta" }
             },
             {
                 name: "Max Temperature",
                 type: "scatter",
                 data: tempData.map((value, index) => [index, value === Math.max(...tempData) ? value : null]),
-                xAxisIndex: 1,
-                yAxisIndex: 1,
+                xAxisIndex: 2,
+                yAxisIndex: 2,
                 symbolSize: 16,
                 itemStyle: { color: "red" }
             },
@@ -167,8 +190,8 @@ export default function WeatherChart({ weatherData }) {
                 name: "Min Temperature",
                 type: "scatter",
                 data: tempData.map((value, index) => [index, value === Math.min(...tempData) ? value : null]),
-                xAxisIndex: 1,
-                yAxisIndex: 1,
+                xAxisIndex: 2,
+                yAxisIndex: 2,
                 symbolSize: 16,
                 itemStyle: { color: "blue" }
             },
@@ -176,8 +199,8 @@ export default function WeatherChart({ weatherData }) {
                 name: "Rainfall",
                 type: "bar",
                 data: rainData,
-                xAxisIndex: 2,
-                yAxisIndex: 2,
+                xAxisIndex: 3,
+                yAxisIndex: 3,
                 itemStyle: { color: "cyan" },
                 barWidth: 10
             },
@@ -185,8 +208,8 @@ export default function WeatherChart({ weatherData }) {
                 name: "Max Rainfall",
                 type: "bar",
                 data: maxRainData.map(v => v.toFixed(2)),
-                xAxisIndex: 2,
-                yAxisIndex: 2,
+                xAxisIndex: 3,
+                yAxisIndex: 3,
                 itemStyle: { color: "magenta" },
                 barWidth: 3
             },
@@ -198,7 +221,7 @@ export default function WeatherChart({ weatherData }) {
                     return {
                         type: 'text',
                         style: {
-                            text: value,
+                            text: `${value} mm`,
                             fill: 'black',
                             fontSize: 14,
                             textAlign: 'center',
@@ -211,8 +234,8 @@ export default function WeatherChart({ weatherData }) {
                     };
                 },
                 data: alignedDailyRainData,
-                xAxisIndex: 3,
-                yAxisIndex: 3
+                xAxisIndex: 4,
+                yAxisIndex: 4
             }
         ],
     };
