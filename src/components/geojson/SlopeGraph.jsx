@@ -45,7 +45,7 @@ export default function SlopeGraph({ slopeData }) {
     };
 
     return (
-        <div className='mb-5'>
+        <div className='pb-5'>
             <ReactECharts option={options} style={{ height: '500px', width: '100%' }} />
         </div>
     );
