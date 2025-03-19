@@ -1,0 +1,697 @@
+{
+    "coordinates": {
+        "centroid_x": -234594.420,
+        "centroid_y": -1173957.233,
+        "centroid_lon": 21.60332,
+        "centroid_lat": 49.32121,
+        "min_x": -238052.976,
+        "min_y": -1178089.692,
+        "min_lon": 21.55656,
+        "min_lat": 49.28364,
+        "max_x": -228069.988,
+        "max_y": -1168971.476,
+        "max_lon": 21.69020,
+        "max_lat": 49.36840
+    },
+    "area_km2": 5.3,
+    "elevation": {
+        "elevation_max": 338.64,
+        "elevation_min": 212.68,
+        "elevation_avg": 249.97
+    },
+    "max_elev_geom": {
+        "geojson": {
+            "type": "Point",
+            "crs": {
+                "type": "name",
+                "properties": {
+                    "name": "EPSG:5514"
+                }
+            },
+            "coordinates": [
+                -228085.6756791356,
+                -1168998.3633515816
+            ]
+        }
+    },
+    "min_elev_geom": {
+        "geojson": {
+            "type": "Point",
+            "crs": {
+                "type": "name",
+                "properties": {
+                    "name": "EPSG:5514"
+                }
+            },
+            "coordinates": [
+                -235738.63533099924,
+                -1178083.3588581616
+            ]
+        }
+    },
+    "hypso_curve": [
+        {
+            "kategoria": "338.64",
+            "kumulativ": 0.00
+        },
+        {
+            "kategoria": "300.00",
+            "kumulativ": 8.19
+        },
+        {
+            "kategoria": "250.00",
+            "kumulativ": 40.26
+        },
+        {
+            "kategoria": "212.68",
+            "kumulativ": 100.00
+        }
+    ],
+    "elevation_histogram": [
+        {
+            "min": 212.67538452148438,
+            "max": 225.27134704589844,
+            "category": "cat: 212.67538452148438 - 225.27134704589844",
+            "count": 1047681,
+            "percent": 0.19754233793532178
+        },
+        {
+            "min": 225.27134704589844,
+            "max": 237.8673095703125,
+            "category": "cat: 225.27134704589844 - 237.8673095703125",
+            "count": 1548748,
+            "percent": 0.29201951814784627
+        },
+        {
+            "min": 237.8673095703125,
+            "max": 250.46327209472656,
+            "category": "cat: 237.8673095703125 - 250.46327209472656",
+            "count": 586355,
+            "percent": 0.11055840237635844
+        },
+        {
+            "min": 250.46327209472656,
+            "max": 263.0592346191406,
+            "category": "cat: 250.46327209472656 - 263.0592346191406",
+            "count": 661758,
+            "percent": 0.12477578811432359
+        },
+        {
+            "min": 263.0592346191406,
+            "max": 275.6551971435547,
+            "category": "cat: 263.0592346191406 - 275.6551971435547",
+            "count": 372727,
+            "percent": 0.07027841775465879
+        },
+        {
+            "min": 275.6551971435547,
+            "max": 288.25115966796875,
+            "category": "cat: 275.6551971435547 - 288.25115966796875",
+            "count": 321980,
+            "percent": 0.06070996989390368
+        },
+        {
+            "min": 288.25115966796875,
+            "max": 300.8471221923828,
+            "category": "cat: 288.25115966796875 - 300.8471221923828",
+            "count": 351899,
+            "percent": 0.06635125689699613
+        },
+        {
+            "min": 300.8471221923828,
+            "max": 313.4430847167969,
+            "category": "cat: 300.8471221923828 - 313.4430847167969",
+            "count": 189608,
+            "percent": 0.03575096581043322
+        },
+        {
+            "min": 313.4430847167969,
+            "max": 326.03904724121094,
+            "category": "cat: 313.4430847167969 - 326.03904724121094",
+            "count": 151528,
+            "percent": 0.028570906013054963
+        },
+        {
+            "min": 326.03904724121094,
+            "max": 338.635009765625,
+            "category": "cat: 326.03904724121094 - 338.635009765625",
+            "count": 71293,
+            "percent": 0.013442437057103159
+        }
+    ],
+    "slope": {
+        "slope_max": 73.14,
+        "slope_min": 0.00,
+        "slope_avg": 4.52
+    },
+    "slope_graph": [
+        {
+            "kategoria": "<0,1>",
+            "percento": 21.98
+        },
+        {
+            "kategoria": "(1,3>",
+            "percento": 39.73
+        },
+        {
+            "kategoria": "(3,7>",
+            "percento": 20.87
+        },
+        {
+            "kategoria": "(7,12>",
+            "percento": 7.54
+        },
+        {
+            "kategoria": "(12,17>",
+            "percento": 3.94
+        },
+        {
+            "kategoria": "(17,25>",
+            "percento": 3.67
+        },
+        {
+            "kategoria": "(25,35>",
+            "percento": 1.79
+        },
+        {
+            "kategoria": "(35,90>",
+            "percento": 0.47
+        }
+    ],
+    "adm_units": {
+        "kraje": [
+            {
+                "kraj": "Prešovský",
+                "areakm2": 5.30,
+                "percento": 100.00,
+                "okresy": [
+                    {
+                        "okres": "Svidník",
+                        "areakm2": 5.30,
+                        "percento": 100.00,
+                        "obce": [
+                            {
+                                "obec": "Hunkovce",
+                                "areakm2": 0.63,
+                                "percento": 11.86,
+                                "katastre": [
+                                    {
+                                        "kataster": "Hunkovce",
+                                        "areakm2": 0.63,
+                                        "percento": 11.86
+                                    }
+                                ]
+                            },
+                            {
+                                "obec": "Krajná Poľana",
+                                "areakm2": 0.22,
+                                "percento": 4.24,
+                                "katastre": [
+                                    {
+                                        "kataster": "Krajná Poľana",
+                                        "areakm2": 0.22,
+                                        "percento": 4.24
+                                    }
+                                ]
+                            },
+                            {
+                                "obec": "Krajné Čierno",
+                                "areakm2": 0.11,
+                                "percento": 2.01,
+                                "katastre": [
+                                    {
+                                        "kataster": "Krajné Čierno",
+                                        "areakm2": 0.11,
+                                        "percento": 2.01
+                                    }
+                                ]
+                            },
+                            {
+                                "obec": "Ladomirová",
+                                "areakm2": 1.39,
+                                "percento": 26.18,
+                                "katastre": [
+                                    {
+                                        "kataster": "Ladomirová",
+                                        "areakm2": 1.39,
+                                        "percento": 26.18
+                                    }
+                                ]
+                            },
+                            {
+                                "obec": "Nižný Komárnik",
+                                "areakm2": 0.00,
+                                "percento": 0.02,
+                                "katastre": [
+                                    {
+                                        "kataster": "Nižný Komárnik",
+                                        "areakm2": 0.00,
+                                        "percento": 0.02
+                                    }
+                                ]
+                            },
+                            {
+                                "obec": "Svidník",
+                                "areakm2": 2.95,
+                                "percento": 55.69,
+                                "katastre": [
+                                    {
+                                        "kataster": "Svidník",
+                                        "areakm2": 2.95,
+                                        "percento": 55.69
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "geomorpho_division": {
+        "sustavy": [
+            {
+                "sustava": "Alpsko-himalájska",
+                "areakm2": 5.30,
+                "percento": 100.00,
+                "podsustavy": [
+                    {
+                        "podsustava": "Karpaty",
+                        "areakm2": 5.30,
+                        "percento": 100.00,
+                        "provincie": [
+                            {
+                                "provincia": "Východné Karpaty",
+                                "areakm2": 5.30,
+                                "percento": 100.00,
+                                "subprovincie": [
+                                    {
+                                        "subprovincia": "Vonkajšie Východné Karpaty",
+                                        "areakm2": 5.30,
+                                        "percento": 100.00,
+                                        "oblasti": [
+                                            {
+                                                "oblast": "Nízke Beskydy",
+                                                "areakm2": 5.30,
+                                                "percento": 100.00,
+                                                "celky": [
+                                                    {
+                                                        "celok": "Laborecká vrchovina",
+                                                        "areakm2": 0.72,
+                                                        "percento": 13.57,
+                                                        "podcelky": [
+                                                            {
+                                                                "podcelok": " ",
+                                                                "areakm2": 0.72,
+                                                                "percento": 13.57,
+                                                                "casti": [
+                                                                    {
+                                                                        "cast": " ",
+                                                                        "areakm2": 0.72,
+                                                                        "percento": 13.57
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "celok": "Ondavská vrchovina",
+                                                        "areakm2": 4.58,
+                                                        "percento": 86.43,
+                                                        "podcelky": [
+                                                            {
+                                                                "podcelok": " ",
+                                                                "areakm2": 4.58,
+                                                                "percento": 86.43,
+                                                                "casti": [
+                                                                    {
+                                                                        "cast": " ",
+                                                                        "areakm2": 2.30,
+                                                                        "percento": 43.33
+                                                                    },
+                                                                    {
+                                                                        "cast": "Stropkovská brázda",
+                                                                        "areakm2": 2.29,
+                                                                        "percento": 43.10
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "geology_substrate": [
+        {
+            "name": "hlinitoštrkovité až hlinito piesočnaté nivné sedimenty",
+            "areakm2": 5.23,
+            "percent": 98.65
+        },
+        {
+            "name": "hlinitoílovité zvetraliny na spevnených ílovcovo-prachovcových horninách (bridlice, ílovce, slieňovce až vápence)",
+            "areakm2": 0.05,
+            "percent": 1.02
+        },
+        {
+            "name": "hlinitoílivité deluviálne sedimenty",
+            "areakm2": 0.01,
+            "percent": 0.23
+        },
+        {
+            "name": "hlinité zvetraliny až hlinitokamenné sute na pieskovcovo-zlepencových horninách (pieskovce, zlepence, bridlice, kremence, arkózy, droby, slieňovce až vápence)",
+            "areakm2": 0.00,
+            "percent": 0.07
+        },
+        {
+            "name": "zosuvy",
+            "areakm2": 0.00,
+            "percent": 0.02
+        },
+        {
+            "name": "štrkovitohlinité až štrkovité proluviálne sedimenty",
+            "areakm2": 0.00,
+            "percent": 0.01
+        },
+        {
+            "name": "hlinité zvetraliny na flyšoidných horninách (bridlice, pieskovce, slieňovce až vápence)",
+            "areakm2": 0.00,
+            "percent": 0.00
+        }
+    ],
+    "land_use": [
+        {
+            "name": "stromová a krovinová vegetácia - nelesná drevinová vegetácia - líniová drevinová vegetácia - brehové porasty drevín",
+            "areakm2": 1.23,
+            "percent": 23.11
+        },
+        {
+            "name": "trávobylinné porasty - trvalé trávobylinné porasty - trávne a trávobylinné porasty sukcesne zarastajúce - nečlenené",
+            "areakm2": 0.63,
+            "percent": 11.84
+        },
+        {
+            "name": "trávobylinné porasty - trvalé trávobylinné porasty - trvalé trávne porasty (lúky a pasienky) - bez stromov a krov",
+            "areakm2": 0.48,
+            "percent": 9.09
+        },
+        {
+            "name": "stromová a krovinová vegetácia - lesy - listnaté lesy - súvislé",
+            "areakm2": 0.44,
+            "percent": 8.25
+        },
+        {
+            "name": "poľnohospodárske kultúry - orná pôda - polia - veľkoblokové polia",
+            "areakm2": 0.42,
+            "percent": 7.94
+        },
+        {
+            "name": "sídla a zastavané plochy - bývanie a komplexná občianska vybavenosť - Potrebné podrobnejšie klasifikovať - Potrebné podrobnejšie klasifikovať",
+            "areakm2": 0.39,
+            "percent": 7.37
+        },
+        {
+            "name": "sídla a zastavané plochy - sídelná a technická vegetácia - prídomové záhrady - Potrebné podrobnejšie klasifikovať",
+            "areakm2": 0.25,
+            "percent": 4.73
+        },
+        {
+            "name": "sídla a zastavané plochy - bývanie a komplexná občianska vybavenosť - zástavba rodinných domov - Potrebné podrobnejšie klasifikovať",
+            "areakm2": 0.22,
+            "percent": 4.17
+        },
+        {
+            "name": "stromová a krovinová vegetácia - nelesná drevinová vegetácia - lesíky - nečlenené",
+            "areakm2": 0.19,
+            "percent": 3.56
+        },
+        {
+            "name": "sídla a zastavané plochy - bývanie a komplexná občianska vybavenosť - občianska vybavenosť a služby - nečlenené",
+            "areakm2": 0.16,
+            "percent": 3.06
+        },
+        {
+            "name": "sídla a zastavané plochy - výrobné a technické objekty a areály - priemyselné a technické areály - nečlenené",
+            "areakm2": 0.15,
+            "percent": 2.81
+        },
+        {
+            "name": "sídla a zastavané plochy - dopravné objekty a areály - cestné komunikácie - cesty 2. a 3. triedy a obslužné komunikácie v intraviláne",
+            "areakm2": 0.15,
+            "percent": 2.80
+        },
+        {
+            "name": "sídla a zastavané plochy - športové objekty a areály - Potrebné podrobnejšie klasifikovať - Potrebné podrobnejšie klasifikovať",
+            "areakm2": 0.14,
+            "percent": 2.67
+        },
+        {
+            "name": "sídla a zastavané plochy - bývanie a komplexná občianska vybavenosť - zástavba bytových domov - viacposchodové bytové a polyfunkčné (bývanie je hlavná funkcia) domy",
+            "areakm2": 0.08,
+            "percent": 1.42
+        },
+        {
+            "name": "poľnohospodárske kultúry - orná pôda - polia - maloplošné polia",
+            "areakm2": 0.07,
+            "percent": 1.24
+        },
+        {
+            "name": "sídla a zastavané plochy - dopravné objekty a areály - cestné komunikácie - cesty 1. triedy",
+            "areakm2": 0.06,
+            "percent": 1.07
+        },
+        {
+            "name": "sídla a zastavané plochy - sídelná a technická vegetácia - parková vegetácia - nečlenené",
+            "areakm2": 0.06,
+            "percent": 1.05
+        },
+        {
+            "name": "povrchové vody a mokrade - vodné toky - vodné toky prirodzené - nečlenené",
+            "areakm2": 0.06,
+            "percent": 1.04
+        },
+        {
+            "name": "sídla a zastavané plochy - dopravné objekty a areály - cestné komunikácie - nespevnené cesty",
+            "areakm2": 0.03,
+            "percent": 0.66
+        },
+        {
+            "name": "sídla a zastavané plochy - dopravné objekty a areály - Potrebné podrobnejšie klasifikovať - Potrebné podrobnejšie klasifikovať",
+            "areakm2": 0.03,
+            "percent": 0.59
+        },
+        {
+            "name": "stromová a krovinová vegetácia - nelesná drevinová vegetácia - skupiny drevín s prevahou stromov - nečlenené",
+            "areakm2": 0.03,
+            "percent": 0.53
+        },
+        {
+            "name": "poľnohospodárske kultúry - mozaiky poľnohospodárskych kultúr - mozaiky s prevahou trávnatých porastov - s podielom drevin",
+            "areakm2": 0.02,
+            "percent": 0.34
+        },
+        {
+            "name": "sídla a zastavané plochy - výrobné a technické objekty a areály - poľnohospodárske areály - nečlenené",
+            "areakm2": 0.01,
+            "percent": 0.25
+        },
+        {
+            "name": "sídla a zastavané plochy - rekreačné objekty a areály - rekreačné objekty - chatové osady",
+            "areakm2": 0.01,
+            "percent": 0.19
+        },
+        {
+            "name": "stromová a krovinová vegetácia - lesy - zmiešané lesy - súvislé",
+            "areakm2": 0.00,
+            "percent": 0.08
+        },
+        {
+            "name": "stromová a krovinová vegetácia - nelesná drevinová vegetácia - líniová drevinová vegetácia - nečlenené",
+            "areakm2": 0.00,
+            "percent": 0.06
+        },
+        {
+            "name": "sídla a zastavané plochy - dopravné objekty a areály - cestné komunikácie - diaľnice a rýchlostné komunikácie existujúce",
+            "areakm2": 0.00,
+            "percent": 0.04
+        },
+        {
+            "name": "stromová a krovinová vegetácia - lesy - ihličnaté lesy - súvislé",
+            "areakm2": 0.00,
+            "percent": 0.01
+        },
+        {
+            "name": "poľnohospodárske kultúry - viacročné kultúry - ovocné sady - Potrebné podrobnejšie klasifikovať",
+            "areakm2": 0.00,
+            "percent": 0.01
+        },
+        {
+            "name": "sídla a zastavané plochy - bývanie a komplexná občianska vybavenosť - kultúrno-historické a religiózne objekty - cintoríny a urnové háje, krematóriá",
+            "areakm2": 0.00,
+            "percent": 0.00
+        },
+        {
+            "name": "poľnohospodárske kultúry - mozaiky poľnohospodárskych kultúr - mozaiky bez výraznej prevahy jednej z kulktúr - nečlenené",
+            "areakm2": 0.00,
+            "percent": 0.00
+        }
+    ],
+    "water_bodies": [
+        {
+            "name": "N/A",
+            "category": "vypustený",
+            "areakm2": 0.00,
+            "percent": 0.07
+        },
+        {
+            "name": "N/A",
+            "category": "N/A",
+            "areakm2": 0.00,
+            "percent": 0.01
+        }
+    ],
+    "protected_sites": [
+        {
+            "name": "Laborecka vrchovina",
+            "category": "Special Protection Area (Birds Directive)",
+            "areakm2": 0.96,
+            "percent": 18.01
+        },
+        {
+            "name": "Horny tok Ondavy",
+            "category": "B",
+            "areakm2": 0.39,
+            "percent": 7.37
+        }
+    ],
+    "podne_typy": {
+        "podne_typy": [
+            {
+                "podny_typ": "fluvizem",
+                "podny_typ_kod": "FM",
+                "areakm2": 5.19,
+                "percento": 97.83,
+                "podne_subtypy": [
+                    {
+                        "podny_subtyp": "fluvizem glejová",
+                        "podny_subtyp_kod": "FMG",
+                        "areakm2": 5.19,
+                        "percento": 97.83
+                    }
+                ]
+            },
+            {
+                "podny_typ": "pseudoglej",
+                "podny_typ_kod": "PG",
+                "areakm2": 0.09,
+                "percento": 1.73,
+                "podne_subtypy": [
+                    {
+                        "podny_subtyp": "pseudoglej modálny",
+                        "podny_subtyp_kod": "PGm",
+                        "areakm2": 0.09,
+                        "percento": 1.73
+                    }
+                ]
+            },
+            {
+                "podny_typ": "kambizem",
+                "podny_typ_kod": "KM",
+                "areakm2": 0.02,
+                "percento": 0.41,
+                "podne_subtypy": [
+                    {
+                        "podny_subtyp": "kambizem modálna",
+                        "podny_subtyp_kod": "KMm",
+                        "areakm2": 0.02,
+                        "percento": 0.29
+                    },
+                    {
+                        "podny_subtyp": "kambizem pseudoglejová",
+                        "podny_subtyp_kod": "KMg",
+                        "areakm2": 0.01,
+                        "percento": 0.12
+                    }
+                ]
+            },
+            {
+                "podny_typ": "ranker",
+                "podny_typ_kod": "RN",
+                "areakm2": 0.00,
+                "percento": 0.03,
+                "podne_subtypy": [
+                    {
+                        "podny_subtyp": "ranker modálny",
+                        "podny_subtyp_kod": "RNm",
+                        "areakm2": 0.00,
+                        "percento": 0.03
+                    }
+                ]
+            }
+        ]
+    },
+    "podne_druhy": [
+        {
+            "zrnitost": "prachovito-hlinitá",
+            "areakm2": 5.29,
+            "percento": 99.75
+        },
+        {
+            "zrnitost": "hlinitá",
+            "areakm2": 0.01,
+            "percento": 0.25
+        }
+    ],
+    "basin_form_factor": [
+        {
+            "ff_max_river_length": 15.12,
+            "polygon_area_km2": 5.3,
+            "form_factor_num": 0.02,
+            "form_factor_code": 1,
+            "form_factor_txt_sk": "1 - Pretiahnutý"
+        }
+    ],
+    "river_network_density": [
+        {
+            "length_sum_km": 27.34,
+            "areakm2": 5.3,
+            "density_km_km2": 5.16
+        }
+    ],
+    "basin_outlet_stream": [
+        {
+            "stream_name": "Ondava",
+            "stream_order_strahler": 6,
+            "stream_order_shreve": 526,
+            "stream_order_hack": 4
+        }
+    ],
+    "temp_yr_avg": {
+        "temp_yr_avg_poly_max": 7.87,
+        "temp_yr_avg_poly_min": 7.05,
+        "temp_yr_avg_poly_avg": 7.66
+    },
+    "precip_yr_sum": {
+        "precip_yr_sum_poly_max": 873.79,
+        "precip_yr_sum_poly_min": 721.46,
+        "precip_yr_sum_poly_avg": 761.42
+    },
+    "snow_yr_sum": {
+        "snow_yr_sum_poly_max": 87.98,
+        "snow_yr_sum_poly_min": 54.91,
+        "snow_yr_sum_poly_avg": 62.96
+    },
+    "snow_yr_days": {
+        "snow_yr_days_poly_max": 86,
+        "snow_yr_days_poly_min": 74,
+        "snow_yr_days_poly_avg": 78
+    }
+}
