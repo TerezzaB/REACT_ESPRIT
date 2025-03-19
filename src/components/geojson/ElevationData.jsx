@@ -40,6 +40,9 @@ export default function ElevationData({ elevationData }) {
                 type: 'bar',
                 barWidth: '80%', // Šírka stĺpcov
                 data: chartData.map(data => data.y), // Hodnoty pre os Y
+                itemStyle: {
+                    color: '#3aff16', // Žiarivá ružová farba
+                },
             },
         ],
     };

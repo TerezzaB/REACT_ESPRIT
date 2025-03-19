@@ -1,41 +1,44 @@
 import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
-export default function HypsoCurve({ hypsoCurveData }) {
+export default function SlopeGraph({ slopeData }) {
     // Transformácia dát pre graf
-    const chartData = hypsoCurveData.map(item => ({
+    const chartData = slopeData.map(item => ({
         x: item.kategoria, // Kategoria pre os X
-        y: item.kumulativ, // Kumulativ pre os Y
+        y: item.percento, // Percento pre os Y
     }));
 
     // Konfigurácia grafu
     const options = {
         title: {
-            text: 'Hypsometric Curve',
+            text: 'Slope Graph',
         },
         tooltip: {
             trigger: 'axis',
             axisPointer: {
-                type: 'line',
+                type: 'shadow', // Zvýraznenie stĺpca
             },
         },
         xAxis: {
             type: 'category',
             data: chartData.map(data => data.x), // Hodnoty pre os X
             name: 'Category',
+            axisTick: {
+                alignWithLabel: true, // Zarovnanie značiek s popiskami
+            },
         },
         yAxis: {
             type: 'value',
-            name: 'Cumulative (%)',
+            name: 'Percentage (%)',
         },
         series: [
             {
-                name: 'Cumulative',
-                type: 'line',
-                areaStyle: {}, // Štýl pre vyplnenie oblasti pod čiarou
+                name: 'Percentage',
+                type: 'bar',
+                barWidth: '60%', // Šírka stĺpcov
                 data: chartData.map(data => data.y), // Hodnoty pre os Y
                 itemStyle: {
-                    color: '#07f0fb', // Žiarivá ružová farba
+                    color: '#FF1493', // Žiarivá ružová farba
                 },
             },
         ],
