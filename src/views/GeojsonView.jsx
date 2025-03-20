@@ -6,6 +6,7 @@ import SlopeGraph from '../components/geojson/SlopeGraph';
 import GeologySubstrate from '../components/geojson/GeologySubstrate';
 import LandUse from '../components/geojson/LandUse';
 import SoilSpecies from '../components/geojson/SoilSpecies';
+import SoilTypes from '../components/geojson/SoilTypes';  
 
 export default function GeojsonView() {
   const [elevationData, setElevationData] = useState([]);
@@ -13,7 +14,8 @@ export default function GeojsonView() {
   const [slopeData, setSlopeData] = useState([]);
   const [geologySubstrateData, setGeologySubstrateData] = useState([]);
   const [landUseData, setLandUseData] = useState([]);
-  const [soilSpeciesData, setSoilSpecietData] = useState([]);
+  const [soilSpeciesData, setSoilSpeciesData] = useState([]);
+  const [SoilTypesData, setSoilTypesData] = useState([]);
 
   useEffect(() => {
     setElevationData(geojson.elevation_histogram || []);
@@ -21,7 +23,8 @@ export default function GeojsonView() {
     setSlopeData(geojson.slope_graph || []);
     setGeologySubstrateData(geojson.geology_substrate || []);
     setLandUseData(geojson.land_use || []);
-    setSoilSpecietData(geojson.podne_druhy || []);
+    setSoilSpeciesData(geojson.podne_druhy || []);
+    setSoilTypesData(geojson.podne_typy || []);
   }, []);
 
   return (
@@ -32,6 +35,7 @@ export default function GeojsonView() {
       <GeologySubstrate geologySubstrateData={geologySubstrateData}/>
       <LandUse landUseData={landUseData}/>
       <SoilSpecies soilSpeciesData={soilSpeciesData}/>
+      <SoilTypes soilTypesData={SoilTypesData}/>
     </div>
   );
 }
