@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
-export default function GeologySubstrate({ geologySubstrateData }) {
+export default function LandUse({ landUseData }) {
     // Transformácia dát pre graf
-    const chartData = geologySubstrateData.map(item => ({
+    const chartData = landUseData.map(item => ({
         value: item.percent, // Percento pre pie chart
         name: item.name, // Názov pre legendu
         tooltipInfo: `${item.areakm2} km²`, // Informácia pre tooltip
@@ -12,27 +12,28 @@ export default function GeologySubstrate({ geologySubstrateData }) {
     // Konfigurácia grafu
     const options = {
         title: {
-            text: 'Geology Substrate',
+            text: 'Land Use',
             left: 'center',
+            top: '0%',
         },
         tooltip: {
             trigger: 'item',
             formatter: params => {
                 const { data, percent } = params;
                 return `Area: ${data.tooltipInfo}<br />Percent: ${percent}%`;
-            }, // Tooltip bez názvu
+            },
         },
         legend: {
             orient: 'vertical',
             left: 'left',
-            top: '10%',
+            top: '4%', // Posunutie legendy nižšie
         },
         series: [
             {
-                name: 'Geology Substrate',
+                name: 'Land Use',
                 type: 'pie',
-                radius: ['30%', '50%'], 
-                center: ['50%', '65%'], 
+                radius: ['25%', '45%'],
+                center: ['50%', '70%'], // Posunutie grafu nižšie
                 startAngle: 180,
                 data: chartData,
                 emphasis: {
@@ -48,7 +49,10 @@ export default function GeologySubstrate({ geologySubstrateData }) {
 
     return (
         <div className='mb-5'>
-            <ReactECharts option={options} style={{ height: '700px', width: '100%' }} />
+            <ReactECharts 
+                option={options} 
+                style={{ height: '1700px', width: '100%' }} // Zvýšenie výšky kontajnera
+            />
         </div>
     );
 }
