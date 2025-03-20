@@ -1,9 +1,12 @@
 import React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import geojson from '../../assets/geojson.json';
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '& td, & th': {
+    border: 'none',
+  },
   '&:nth-of-type(even)': {
     backgroundColor: '#F9F9F9',
   },
@@ -13,7 +16,7 @@ export default function DataTable() {
   const podneTypy = geojson.podne_typy.podne_typy;
 
   return (
-    <TableContainer component="div">
+    <TableContainer component="div" sx={{ borderRadius: '10px' }}>
       <Table>
         <TableHead sx={{ backgroundColor: '#F9F9F9' }}>
           <StyledTableRow>
