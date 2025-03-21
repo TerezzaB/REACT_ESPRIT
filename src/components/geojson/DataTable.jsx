@@ -16,7 +16,7 @@ export default function DataTable() {
   const podneTypy = geojson.podne_typy.podne_typy;
 
   return (
-    <TableContainer component="div" sx={{ borderRadius: '10px' }}>
+    <TableContainer component="div" sx={{ borderRadius: '10px', boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' }}>
       <Table>
         <TableHead sx={{ backgroundColor: '#F9F9F9' }}>
           <StyledTableRow>
