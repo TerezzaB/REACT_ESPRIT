@@ -7,12 +7,16 @@ export default function SoilTypes() {
     const [soilTypesData, setSoilTypesData] = useState([]);
 
     useEffect(() => {
-        // Načítanie údajov zo súboru geojson
+        // Prepare data for the table, including podne_subtypy
         if (geojson.podne_typy && geojson.podne_typy.podne_typy) {
             const data = geojson.podne_typy.podne_typy.map(item => ({
-                name: `${item.podny_typ} (${item.podny_typ_kod})`, // Kombinácia názvu a kódu
-                value: item.areakm2, // Hodnota pre graf
-                percent: item.percento, // Percento pre tooltip
+                podny_typ: item.podny_typ,
+                podny_typ_kod: item.podny_typ_kod,
+                areakm2: item.areakm2,
+                percento: item.percento,
+                podne_subtypy: item.podne_subtypy.map(subtyp => 
+                    `${subtyp.podny_subtyp} (${subtyp.podny_subtyp_kod})`
+                ).join(', '), // Combine subtypes into a single string
             }));
             setSoilTypesData(data);
         }
@@ -54,7 +58,11 @@ export default function SoilTypes() {
                         fontWeight: 'bold',
                     },
                 },
-                data: soilTypesData,
+                data: soilTypesData.map(item => ({
+                    name: `${item.podny_typ} (${item.podny_typ_kod})`,
+                    value: item.areakm2,
+                    percent: item.percento,
+                })),
             },
         ],
     };

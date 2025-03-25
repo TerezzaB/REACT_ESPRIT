@@ -1,7 +1,6 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import geojson from '../../assets/geojson.json';
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '& td, & th': {
@@ -12,35 +11,42 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function DataTable() {
-  const podneTypy = geojson.podne_typy.podne_typy;
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  fontWeight: 'bold',
+}));
+
+export default function DataTable({ data }) {
+  if (!data || data.length === 0) {
+    return <div>No data available</div>;
+  }
+
+  // Extract column headers dynamically from the first row of data
+  const columns = Object.keys(data[0]);
 
   return (
     <TableContainer component="div" sx={{ borderRadius: '10px', boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' }}>
       <Table>
         <TableHead sx={{ backgroundColor: '#F9F9F9' }}>
           <StyledTableRow>
-            <TableCell>Podny Typ</TableCell>
-            <TableCell>Kód</TableCell>
-            <TableCell>Area (km²)</TableCell>
-            <TableCell>Percento</TableCell>
-            <TableCell>Podny Subtyp</TableCell>
+            {columns.map((column, index) => (
+              <StyledTableCell key={index}>{column}</StyledTableCell>
+            ))}
           </StyledTableRow>
         </TableHead>
         <TableBody>
-          {podneTypy.map((typ, index) => (
-            <StyledTableRow key={index}>
-              <TableCell>{typ.podny_typ}</TableCell>
-              <TableCell>{typ.podny_typ_kod}</TableCell>
-              <TableCell>{typ.areakm2}</TableCell>
-              <TableCell>{typ.percento}</TableCell>
-              <TableCell>
-                {typ.podne_subtypy.map((subtyp, subIndex) => (
-                  <div key={subIndex}>
-                    {subtyp.podny_subtyp} ({subtyp.podny_subtyp_kod})
-                  </div>
-                ))}
-              </TableCell>
+          {data.map((row, rowIndex) => (
+            <StyledTableRow key={rowIndex}>
+              {columns.map((column, colIndex) => (
+                <TableCell key={colIndex}>
+                  {Array.isArray(row[column]) ? (
+                    row[column].map((item, itemIndex) => (
+                      <div key={itemIndex}>{JSON.stringify(item)}</div>
+                    ))
+                  ) : (
+                    row[column]
+                  )}
+                </TableCell>
+              ))}
             </StyledTableRow>
           ))}
         </TableBody>
