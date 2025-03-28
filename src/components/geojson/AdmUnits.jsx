@@ -1,5 +1,5 @@
 import React from 'react';
-import DataTable from './DataTable';
+import DataTable from './universal/DataTable';
 
 export default function AdmUnits({ admUnitsData }) {
   if (!admUnitsData || Object.keys(admUnitsData).length === 0) {

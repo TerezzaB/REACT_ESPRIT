@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactECharts from 'echarts-for-react';
 import geojson from '../../assets/geojson.json'; // Import geojson súboru
-import DataTable from './DataTable';
+import DataTable from './universal/DataTable';
 
 export default function SoilTypes() {
     const [soilTypesData, setSoilTypesData] = useState([]);

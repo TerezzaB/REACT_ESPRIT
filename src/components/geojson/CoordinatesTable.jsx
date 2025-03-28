@@ -1,5 +1,5 @@
 import React from 'react';
-import DataTable from './DataTable';
+import DataTable from './universal/DataTable';
 
 export default function CoordinatesTable({ coordinatesData }) {
   if (!coordinatesData || Object.keys(coordinatesData).length === 0) {

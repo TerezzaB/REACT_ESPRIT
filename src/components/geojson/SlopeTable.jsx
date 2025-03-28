@@ -1,5 +1,5 @@
 import React from 'react';
-import DataTable from './DataTable';
+import DataTable from './universal/DataTable';
 
 export default function SlopeTable({ slopeData }) {
   if (!slopeData || Object.keys(slopeData).length === 0) {
