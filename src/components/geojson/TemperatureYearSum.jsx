@@ -8,9 +8,9 @@ export default function TemperatureYearSum({ temperatureYearSumData }) {
 
   // Transform temperatureYearSumData into an array of objects for DataTable
   const transformedData = [temperatureYearSumData].map(item => ({
-    max_temp: item.temp_yr_avg_poly_max,
-    min_temp: item.temp_yr_avg_poly_min,
-    avg_temp: item.temp_yr_avg_poly_avg,
+    Max: item.temp_yr_avg_poly_max,
+    Min: item.temp_yr_avg_poly_min,
+    Average: item.temp_yr_avg_poly_avg,
   }));
 
   return (

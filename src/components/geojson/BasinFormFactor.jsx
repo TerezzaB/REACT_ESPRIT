@@ -8,11 +8,11 @@ export default function BasinFormFactor({ basinFormFactorData }) {
 
   // Transform basinFormFactorData into a flat array of objects for DataTable
   const transformedData = basinFormFactorData.map(item => ({
-    ff_max_river_length: item.ff_max_river_length,
-    polygon_area_km2: item.polygon_area_km2,
-    form_factor_num: item.form_factor_num,
-    form_factor_code: item.form_factor_code,
-    form_factor_txt_sk: item.form_factor_txt_sk,
+    'Max River Length': item.ff_max_river_length,
+    'Polygon Area km2': item.polygon_area_km2,
+    'Form Factor Num': item.form_factor_num,
+    'Form Factor Code': item.form_factor_code,
+    'Full text SK': item.form_factor_txt_sk,
   }));
 
   return (

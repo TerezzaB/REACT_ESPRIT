@@ -69,7 +69,7 @@ export default function GeojsonView() {
   }, []);
 
   return (
-    <div className='mt-5'>
+    <div className='mt-5 mb-5'>
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography>Elevation and Slope Data</Typography>

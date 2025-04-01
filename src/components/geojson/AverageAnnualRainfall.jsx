@@ -8,9 +8,9 @@ export default function AverageAnnualRainfall({ averageAnnualRainfallData }) {
 
   // Transform averageAnnualRainfallData into an array of objects for DataTable
   const transformedData = [averageAnnualRainfallData].map(item => ({
-    max_rainfall: item.precip_yr_sum_poly_max,
-    min_rainfall: item.precip_yr_sum_poly_min,
-    avg_rainfall: item.precip_yr_sum_poly_avg,
+    'Max Rainfall': item.precip_yr_sum_poly_max,
+    'Min Rainfall': item.precip_yr_sum_poly_min,
+    'Average Rainfall': item.precip_yr_sum_poly_avg,
   }));
 
   return (

@@ -8,9 +8,9 @@ export default function RiverNetworkDensity({ riverNetworkDensityData }) {
 
   // Transform riverNetworkDensityData into a flat array of objects for DataTable
   const transformedData = riverNetworkDensityData.map(item => ({
-    length_sum_km: item.length_sum_km,
-    areakm2: item.areakm2,
-    density_km_km2: item.density_km_km2,
+    'Length sum in km': item.length_sum_km,
+    'Area km2': item.areakm2,
+    'Density km2': item.density_km_km2,
   }));
 
   return (

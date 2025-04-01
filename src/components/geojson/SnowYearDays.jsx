@@ -8,9 +8,9 @@ export default function SnowYearDays({ snowYearDaysData }) {
 
   // Transform snowYearDaysData into an array of objects for DataTable
   const transformedData = [snowYearDaysData].map(item => ({
-    max_days: item.snow_yr_days_poly_max,
-    min_days: item.snow_yr_days_poly_min,
-    avg_days: item.snow_yr_days_poly_avg,
+    Max: item.snow_yr_days_poly_max,
+    Min: item.snow_yr_days_poly_min,
+    Average: item.snow_yr_days_poly_avg,
   }));
 
   return (

@@ -8,9 +8,9 @@ export default function SnowYearSum({ snowYearSumData }) {
 
   // Transform snowYearSumData into an array of objects for DataTable
   const transformedData = [snowYearSumData].map(item => ({
-    max_snow: item.snow_yr_sum_poly_max,
-    min_snow: item.snow_yr_sum_poly_min,
-    avg_snow: item.snow_yr_sum_poly_avg,
+    Max: item.snow_yr_sum_poly_max,
+    Min: item.snow_yr_sum_poly_min,
+    Average: item.snow_yr_sum_poly_avg,
   }));
 
   return (

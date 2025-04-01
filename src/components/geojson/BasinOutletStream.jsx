@@ -8,10 +8,10 @@ export default function BasinOutletStream({ basinOutletStreamData }) {
 
   // Transform basinOutletStreamData into a flat array of objects for DataTable
   const transformedData = basinOutletStreamData.map(item => ({
-    stream_name: item.stream_name,
-    stream_order_strahler: item.stream_order_strahler,
-    stream_order_shreve: item.stream_order_shreve,
-    stream_order_hack: item.stream_order_hack,
+    'Stream Name': item.stream_name,
+    'Stream Order Strahler': item.stream_order_strahler,
+    'Stream Order Shreve': item.stream_order_shreve,
+    'Stream Order Hack': item.stream_order_hack,
   }));
 
   return (
