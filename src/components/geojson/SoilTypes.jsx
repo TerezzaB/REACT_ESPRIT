@@ -10,11 +10,11 @@ export default function SoilTypes() {
         // Prepare data for the table, including podne_subtypy
         if (geojson.podne_typy && geojson.podne_typy.podne_typy) {
             const data = geojson.podne_typy.podne_typy.map(item => ({
-                podny_typ: item.podny_typ,
-                podny_typ_kod: item.podny_typ_kod,
-                areakm2: item.areakm2,
-                percento: item.percento,
-                podne_subtypy: item.podne_subtypy.map(subtyp => 
+                'Soil Type': item.podny_typ,
+                'Soil Type Code': item.podny_typ_kod,
+                'Area km2': item.areakm2,
+                'Percento': item.percento,
+                'Soil Subtypes': item.podne_subtypy.map(subtyp => 
                     `${subtyp.podny_subtyp} (${subtyp.podny_subtyp_kod})`
                 ).join(', '), // Combine subtypes into a single string
             }));
