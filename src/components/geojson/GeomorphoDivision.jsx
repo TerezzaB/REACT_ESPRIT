@@ -15,16 +15,16 @@ export default function GeomorphoDivision({ geomorphoDivisionData }) {
             oblast.celky.flatMap(celok =>
               celok.podcelky.flatMap(podcelok =>
                 podcelok.casti.map(cast => ({
-                  sustava: sustava.sustava,
-                  podsustava: podsustava.podsustava,
-                  provincia: provincia.provincia,
-                  subprovincia: subprovincia.subprovincia,
-                  oblast: oblast.oblast,
-                  celok: celok.celok,
-                  podcelok: podcelok.podcelok,
-                  cast: cast.cast,
-                  areakm2: cast.areakm2 || podcelok.areakm2 || celok.areakm2 || oblast.areakm2 || subprovincia.areakm2 || provincia.areakm2 || podsustava.areakm2 || sustava.areakm2,
-                  percento: cast.percento || podcelok.percento || celok.percento || oblast.percento || subprovincia.percento || provincia.percento || podsustava.percento || sustava.percento,
+                  System: sustava.sustava,
+                  Subsystem: podsustava.podsustava,
+                  Province: provincia.provincia,
+                  Subprovince: subprovincia.subprovincia,
+                  Area: oblast.oblast,
+                  Cell: celok.celok,
+                  Subcell: podcelok.podcelok,
+                  Cast: cast.cast,
+                  'Area km2': cast.areakm2 || podcelok.areakm2 || celok.areakm2 || oblast.areakm2 || subprovincia.areakm2 || provincia.areakm2 || podsustava.areakm2 || sustava.areakm2,
+                  Percent: cast.percento || podcelok.percento || celok.percento || oblast.percento || subprovincia.percento || provincia.percento || podsustava.percento || sustava.percento,
                 }))
               )
             )

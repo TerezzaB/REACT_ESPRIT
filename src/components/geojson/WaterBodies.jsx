@@ -8,10 +8,10 @@ export default function WaterBodies({ waterBodiesData }) {
 
   // Transform waterBodiesData into a flat array of objects for DataTable
   const transformedData = waterBodiesData.map(body => ({
-    name: body.name,
-    category: body.category,
-    areakm2: body.areakm2,
-    percent: body.percent,
+    Name: body.name,
+    Category: body.category,
+    'Area km2': body.areakm2,
+    Percent: body.percent,
   }));
 
   return (

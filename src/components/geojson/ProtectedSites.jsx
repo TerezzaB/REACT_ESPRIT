@@ -8,10 +8,10 @@ export default function ProtectedSites({ protectedSitesData }) {
 
   // Transform protectedSitesData into a flat array of objects for DataTable
   const transformedData = protectedSitesData.map(site => ({
-    name: site.name,
-    category: site.category,
-    areakm2: site.areakm2,
-    percent: site.percent,
+    Name: site.name,
+    Category: site.category,
+    'Area km2': site.areakm2,
+    'Percent': site.percent,
   }));
 
   return (
