@@ -16,6 +16,7 @@ export default function WaterBodies({ waterBodiesData }) {
 
   return (
     <div className='mt-5 mb-5'>
+      <h5 className="mb-4">Water Bodies Data</h5>
       <DataTable data={transformedData} />
     </div>
   );

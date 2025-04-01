@@ -15,6 +15,7 @@ export default function TemperatureYearSum({ temperatureYearSumData }) {
 
   return (
     <div className='mt-5 mb-5'>
+        <h5 className="mb-4">Temperature Year Summary</h5>
       <DataTable data={transformedData} />
     </div>
   );

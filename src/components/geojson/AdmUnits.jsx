@@ -21,7 +21,8 @@ export default function AdmUnits({ admUnitsData }) {
 
   return (
     <div className='mt-5 mb-5'>
-      <DataTable data={transformedData} />
+        <h5 className="mb-4">Administrative Units</h5>
+        <DataTable data={transformedData} />
     </div>
   );
 }

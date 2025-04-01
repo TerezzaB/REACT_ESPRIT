@@ -36,7 +36,8 @@ export default function GeomorphoDivision({ geomorphoDivisionData }) {
 
   return (
     <div className='mt-5 mb-5'>
-      <DataTable data={transformedData} />
+        <h5 className="mb-4">Geomorpho Division Data</h5>
+        <DataTable data={transformedData} />
     </div>
   );
 }

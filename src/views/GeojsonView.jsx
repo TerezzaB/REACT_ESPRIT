@@ -20,6 +20,8 @@ import AverageAnnualRainfall from '../components/geojson/AverageAnnualRainfall';
 import TemperatureYearSum from '../components/geojson/TemperatureYearSum';
 import SnowYearSum from '../components/geojson/SnowYearSum';
 import SnowYearDays from '../components/geojson/SnowYearDays';
+import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function GeojsonView() {
   const [elevationData, setElevationData] = useState([]);
@@ -68,26 +70,65 @@ export default function GeojsonView() {
 
   return (
     <div className='mt-5'>
-      <ElevationData elevationData={elevationData} />
-      <HypsoCurve hypsoCurveData={hypsoCurveData}/>
-      <SlopeGraph slopeData={slopeData}/>
-      <SlopeTable slopeData={slopeTableData}/>
-      <GeologySubstrate geologySubstrateData={geologySubstrateData}/>
-      <LandUse landUseData={landUseData}/>
-      <SoilSpecies soilSpeciesData={soilSpeciesData}/>
-      <SoilTypes soilTypesData={soilTypesData}/>
-      <Coordinates coordinatesData={coordinatesData}/>
-      <AdmUnits admUnitsData={admUnitsData}/>
-      <GeomorphoDivision geomorphoDivisionData={geomorphoDivisionData}/>
-      <WaterBodies waterBodiesData={waterBodiesData}/>
-      <ProtectedSites protectedSitesData={protectedSitesData}/>
-      <BasinFormFactor basinFormFactorData={basinFormFactorData}/>
-      <RiverNetworkDensity riverNetworkDensityData={riverNetworkDensityData}/>
-      <BasinOutletStream basinOutletStreamData={basinOutletStreamData}/>
-      <AverageAnnualRainfall averageAnnualRainfallData={averageAnnualRainfallData}/>
-      <TemperatureYearSum temperatureYearSumData={temperatureYearSumData}/>
-      <SnowYearSum snowYearSumData={snowYearSumData}/>
-      <SnowYearDays snowYearDaysData={snowYearDaysData}/>
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Elevation and Slope Data</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <ElevationData elevationData={elevationData} />
+          <HypsoCurve hypsoCurveData={hypsoCurveData} />
+          <SlopeGraph slopeData={slopeData} />
+          <SlopeTable slopeData={slopeTableData} />
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Geology and Land Use</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <GeologySubstrate geologySubstrateData={geologySubstrateData} />
+          <LandUse landUseData={landUseData} />
+          <SoilSpecies soilSpeciesData={soilSpeciesData} />
+          <SoilTypes soilTypesData={soilTypesData} />
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Administrative and Geomorphological Data</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Coordinates coordinatesData={coordinatesData} />
+          <AdmUnits admUnitsData={admUnitsData} />
+          <GeomorphoDivision geomorphoDivisionData={geomorphoDivisionData} />
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Water and Protected Areas</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <WaterBodies waterBodiesData={waterBodiesData} />
+          <ProtectedSites protectedSitesData={protectedSitesData} />
+          <BasinFormFactor basinFormFactorData={basinFormFactorData} />
+          <RiverNetworkDensity riverNetworkDensityData={riverNetworkDensityData} />
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Climate Data</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <BasinOutletStream basinOutletStreamData={basinOutletStreamData} />
+          <AverageAnnualRainfall averageAnnualRainfallData={averageAnnualRainfallData} />
+          <TemperatureYearSum temperatureYearSumData={temperatureYearSumData} />
+          <SnowYearSum snowYearSumData={snowYearSumData} />
+          <SnowYearDays snowYearDaysData={snowYearDaysData} />
+        </AccordionDetails>
+      </Accordion>
     </div>
   );
 }

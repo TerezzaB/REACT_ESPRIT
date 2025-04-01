@@ -17,6 +17,7 @@ export default function BasinFormFactor({ basinFormFactorData }) {
 
   return (
     <div className='mt-5 mb-5'>
+        <h5 className="mb-4">Basin Form Factor Data</h5>
       <DataTable data={transformedData} />
     </div>
   );

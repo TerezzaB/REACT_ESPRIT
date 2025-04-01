@@ -14,6 +14,7 @@ export default function SlopeTable({ slopeData }) {
 
   return (
     <div className='mt-5 mb-5'>
+        <h2>Slope Data</h2>
       <DataTable data={transformedData} />
     </div>
   );

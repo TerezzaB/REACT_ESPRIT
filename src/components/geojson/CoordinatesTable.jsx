@@ -14,7 +14,8 @@ export default function CoordinatesTable({ coordinatesData }) {
 
   return (
     <div>
-      <DataTable data={transformedData} />
+        <h5 className="mb-4">Coordinates</h5>
+        <DataTable data={transformedData} />
     </div>
   );
 }

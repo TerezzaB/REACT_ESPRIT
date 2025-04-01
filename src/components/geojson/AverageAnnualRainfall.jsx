@@ -15,6 +15,7 @@ export default function AverageAnnualRainfall({ averageAnnualRainfallData }) {
 
   return (
     <div className='mt-5 mb-5'>
+        <h5 className="mb-4">Average Annual Rainfall</h5>
       <DataTable data={transformedData} />
     </div>
   );

@@ -15,6 +15,7 @@ export default function SnowYearDays({ snowYearDaysData }) {
 
   return (
     <div className='mt-5 mb-5'>
+        <h5 className="mb-4">Yearly Snow Days Summary</h5>
       <DataTable data={transformedData} />
     </div>
   );

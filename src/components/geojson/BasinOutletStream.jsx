@@ -16,6 +16,8 @@ export default function BasinOutletStream({ basinOutletStreamData }) {
 
   return (
     <div className='mt-5 mb-5'>
+        <h5 className="mb-4">Basin Outlet Stream</h5>
+        {/* Add any additional information or styling here */}
       <DataTable data={transformedData} />
     </div>
   );
