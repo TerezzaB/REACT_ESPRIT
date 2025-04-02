@@ -31,7 +31,7 @@ export default function SoilTypes() {
         title: {
             text: 'Soil Types',
             left: 'center',
-            top: '0%', // Pridanie popisu na vrch
+            top: '0%', 
         },
         tooltip: {
             trigger: 'item',
@@ -43,13 +43,13 @@ export default function SoilTypes() {
         legend: {
             orient: 'vertical',
             left: 'left',
-            top: '4%', // Posunutie legendy nižšie
+            top: '4%', 
         },
         series: [
             {
                 name: 'Soil Types',
                 type: 'pie',
-                radius: ['40%', '70%'], // Doughnut štýl
+                radius: ['40%', '70%'], 
                 startAngle: 180,
                 emphasis: {
                     label: {
@@ -58,7 +58,7 @@ export default function SoilTypes() {
                         fontWeight: 'bold',
                     },
                 },
-                data: soilTypesData.map(item => ({
+                data: geojson.podne_typy.podne_typy.map(item => ({
                     name: `${item.podny_typ} (${item.podny_typ_kod})`,
                     value: item.areakm2,
                     percent: item.percento,
