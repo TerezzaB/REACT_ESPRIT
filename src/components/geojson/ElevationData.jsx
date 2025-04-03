@@ -1,55 +1,66 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactECharts from 'echarts-for-react';
 
 export default function ElevationData({ elevationData }) {
-    // Transformácia dát pre graf
-    const chartData = elevationData.map(item => {
-        const [min, max] = item.category.match(/[\d.]+/g).map(Number); // Extrahovanie čísel z category z json fileu
+  const [chartData, setChartData] = useState([]);
+
+  useEffect(() => {
+    if (elevationData && elevationData.length > 0) {
+      const transformedData = elevationData.map(item => {
+        const [min, max] = item.elev_range.split(' - ').map(Number);
         return {
-            x: max - min, // Rozdiel medzi max a min (dufam, ze to ma byt rozdiel LOL)
-            y: item.count
+          x: max - min,
+          y: item.percent, 
         };
-    });
+      });
+      setChartData(transformedData);
+    }
+  }, [elevationData]);
 
-    // Konfigurácia grafu
-    const options = {
-        title: {
-            text: 'Elevation Histogram',
-        },
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                type: 'shadow',
-            },
-        },
-        xAxis: {
-            type: 'category',
-            data: chartData.map(data => data.x),
-            name: 'Category (Difference)',
-            axisTick: {
-                alignWithLabel: true,
-            },
-        },
-        yAxis: {
-            type: 'value',
-            name: 'Count',
-        },
-        series: [
-            {
-                name: 'Count',
-                type: 'bar',
-                barWidth: '80%', // Šírka stĺpcov
-                data: chartData.map(data => data.y), // Hodnoty pre os Y
-                itemStyle: {
-                    color: '#3aff16', // Žiarivá ružová farba
-                },
-            },
-        ],
-    };
 
-    return (
-        <div className='mb-5'>
-            <ReactECharts option={options} style={{ height: '500px', width: '100%' }} />
-        </div>
-    );
+
+
+  // Configure the chart
+  const options = {
+    title: {
+      text: 'Elevation Data',
+      left: 'center',
+    },
+    tooltip: {
+      trigger: 'axis',
+      formatter: params => {
+        const { data } = params[0];
+        return `Elevation Range: ${data.x} km<br />Area: ${data.y} km²`;
+      },
+    },
+    xAxis: {
+      type: 'category',
+      name: 'Elevation Range',
+      data: chartData.map(item => item.x),
+    },
+    yAxis: {
+      type: 'value',
+      name: 'Percent',
+    },
+    series: [
+      {
+        data: chartData.map(item => item.y),
+        type: 'bar',
+        name: 'Area',
+        itemStyle: {
+            color: '#3aff16',
+        },
+      },
+    ],
+  };
+
+  if (!elevationData || elevationData.length === 0) {
+    return <div>No data available for Elevation</div>;
+  }
+
+  return (
+    <div className='mt-5 mb-5'>
+      <ReactECharts option={options} style={{ height: '400px', width: '100%' }} />
+    </div>
+  );
 }
