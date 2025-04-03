@@ -6,8 +6,8 @@ import SlopeGraph from '../components/geojson/SlopeGraph';
 import GeologySubstrate from '../components/geojson/GeologySubstrate';
 import LandUse from '../components/geojson/LandUse';
 import SoilSpecies from '../components/geojson/SoilSpecies';
-import SoilTypes from '../components/geojson/SoilTypes';  
-import Coordinates from '../components/geojson/CoordinatesTable';  
+import SoilTypes from '../components/geojson/SoilTypes';
+import Coordinates from '../components/geojson/CoordinatesTable';
 import SlopeTable from '../components/geojson/SlopeTable';
 import AdmUnits from '../components/geojson/AdmUnits';
 import GeomorphoDivision from '../components/geojson/GeomorphoDivision';
@@ -107,13 +107,22 @@ export default function GeojsonView() {
 
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Basin Characteristic</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <BasinFormFactor basinFormFactorData={basinFormFactorData} />
+          <RiverNetworkDensity riverNetworkDensityData={riverNetworkDensityData} />
+          <BasinOutletStream basinOutletStreamData={basinOutletStreamData} />
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography>Water and Protected Areas</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <WaterBodies waterBodiesData={waterBodiesData} />
           <ProtectedSites protectedSitesData={protectedSitesData} />
-          <BasinFormFactor basinFormFactorData={basinFormFactorData} />
-          <RiverNetworkDensity riverNetworkDensityData={riverNetworkDensityData} />
         </AccordionDetails>
       </Accordion>
 
@@ -122,7 +131,6 @@ export default function GeojsonView() {
           <Typography>Climate Data</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <BasinOutletStream basinOutletStreamData={basinOutletStreamData} />
           <AverageAnnualRainfall averageAnnualRainfallData={averageAnnualRainfallData} />
           <TemperatureYearSum temperatureYearSumData={temperatureYearSumData} />
           <SnowYearSum snowYearSumData={snowYearSumData} />
