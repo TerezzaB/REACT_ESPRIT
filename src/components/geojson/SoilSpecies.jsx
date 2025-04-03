@@ -18,7 +18,7 @@ export default function SoilSpecies({ soilSpeciesData }) {
   // Configure the pie chart
   const options = {
     title: {
-      text: 'Soil Species (Podne Druhy)',
+      text: 'Soil Species',
       left: 'center',
     },
     tooltip: {
