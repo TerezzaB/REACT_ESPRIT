@@ -34,8 +34,8 @@ export default function LandUse({ landUseData }) {
             {
                 name: 'Land Use',
                 type: 'pie',
-                radius: ['25%', '45%'],
-                center: ['50%', '70%'], // Posunutie grafu nižšie
+                radius: ['25%', '50%'],
+                center: ['50%', '63%'], // Posunutie grafu nižšie
                 startAngle: 180,
                 data: chartData,
                 emphasis: {
@@ -53,7 +53,7 @@ export default function LandUse({ landUseData }) {
         <div className='mb-5'>
             <ReactECharts 
                 option={options} 
-                style={{ height: '1700px', width: '100%' }} // Zvýšenie výšky kontajnera
+                style={{ height: '1300px', width: '100%' }} // Zvýšenie výšky kontajnera
             />
         </div>
     );
