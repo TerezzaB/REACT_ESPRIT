@@ -24,7 +24,9 @@ export default function LandUse({ landUseData }) {
             },
         },
         legend: {
+            type: 'scroll',
             orient: 'vertical',
+            height: '300px',
             left: 'left',
             top: '4%', // Posunutie legendy nižšie
         },
