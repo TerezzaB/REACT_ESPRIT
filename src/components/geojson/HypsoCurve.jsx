@@ -32,10 +32,10 @@ export default function HypsoCurve({ hypsoCurveData }) {
             {
                 name: 'Cumulative',
                 type: 'line',
-                areaStyle: {}, // Štýl pre vyplnenie oblasti pod čiarou
-                data: chartData.map(data => data.y), // Hodnoty pre os Y
+                areaStyle: {},
+                data: chartData.map(data => data.y), 
                 itemStyle: {
-                    color: '#07f0fb', // Žiarivá ružová farba
+                    color: '#0c56a2', 
                 },
             },
         ],

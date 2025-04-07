@@ -48,7 +48,7 @@ export default function ElevationData({ elevationData }) {
         type: 'bar',
         name: 'Area',
         itemStyle: {
-            color: '#3aff16',
+            color: '#0c56a2',
         },
       },
     ],

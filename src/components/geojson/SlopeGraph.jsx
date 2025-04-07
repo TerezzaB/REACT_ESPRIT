@@ -38,7 +38,7 @@ export default function SlopeGraph({ slopeData }) {
                 barWidth: '60%', // Šírka stĺpcov
                 data: chartData.map(data => data.y), // Hodnoty pre os Y
                 itemStyle: {
-                    color: '#FF1493', // Žiarivá ružová farba
+                    color: '#0c56a2',
                 },
             },
         ],
