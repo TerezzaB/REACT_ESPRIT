@@ -9,6 +9,16 @@ export default function LandUse({ landUseData }) {
         tooltipInfo: `${item.areakm2} km²`, // Informácia pre tooltip
     }));
 
+    // Dynamický výpočet Y pre center
+    let centerY;
+    if (landUseData.length <= 5) {
+        centerY = '45%';
+    } else if (landUseData.length <= 9) {
+        centerY = '50%';
+    } else {
+        centerY = '58%';
+    }
+
     // Konfigurácia grafu
     const options = {
         title: {
@@ -35,7 +45,7 @@ export default function LandUse({ landUseData }) {
                 name: 'Land Use',
                 type: 'pie',
                 radius: ['25%', '50%'],
-                center: ['50%', '63%'], // Posunutie grafu nižšie
+                center: ['50%', centerY], // Dynamické nastavenie Y
                 startAngle: 180,
                 data: chartData,
                 emphasis: {
@@ -53,7 +63,7 @@ export default function LandUse({ landUseData }) {
         <div className='mb-5'>
             <ReactECharts 
                 option={options} 
-                style={{ height: '1300px', width: '100%' }} // Zvýšenie výšky kontajnera
+                style={{ height: '1200px', width: '100%' }} // Zvýšenie výšky kontajnera
             />
         </div>
     );
