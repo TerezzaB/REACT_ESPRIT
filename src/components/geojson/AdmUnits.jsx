@@ -10,8 +10,8 @@ export default function AdmUnits({ admUnitsData }) {
   const transformedData = admUnitsData.kraje.flatMap(kraj =>
     kraj.okresy.flatMap(okres =>
       okres.obce.map(obec => ({
-        District: kraj.kraj,
-        Region: okres.okres,
+        Region: kraj.kraj,
+        District: okres.okres,
         City: obec.obec,
         'Area km2': obec.areakm2,
         Percent: obec.percento,
